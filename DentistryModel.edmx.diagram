@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5ff36c71cbc54a218e9ff066af2a38b3" Name="Diagram1" ZoomLevel="38">
+        <EntityTypeShape EntityType="dentistryModel.AcessLevel" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.Clinic" Width="1.5" PointX="6" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.ClinicType" Width="1.5" PointX="3.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.consult" Width="1.5" PointX="8.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.costconfirm_Detail" Width="1.5" PointX="7.5" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.costconfirm_head" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.dent_neededservice" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.dent_screen1" Width="1.5" PointX="9.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.doctorsService" Width="1.5" PointX="11.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.DoctorsWorkTime" Width="1.5" PointX="17.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.EventsDescription" Width="1.5" PointX="14.75" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.EventsLog" Width="1.5" PointX="17" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.Introduction_Comment" Width="1.5" PointX="4.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.Introduction_Detail" Width="1.5" PointX="6.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.introduction_Head" Width="1.5" PointX="19.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.IntroductionComment" Width="1.5" PointX="8.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.IntroductionKind" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.Medicalrest" Width="1.5" PointX="19.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.outcenter" Width="1.5" PointX="15" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.OutCenterdepartment" Width="1.5" PointX="12.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.outcenterKind" Width="1.5" PointX="12.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.PaientStatu" Width="1.5" PointX="10.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.PaientType" Width="1.5" PointX="10.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.PlanVisit" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.Recipe" Width="1.5" PointX="13" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.Recipe_comment" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.RecipeError" Width="1.5" PointX="21.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.RecipeService" Width="1.5" PointX="6" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.Services_detail" Width="1.5" PointX="18" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.Services_Head" Width="1.5" PointX="15.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.ServiceTypeF16" Width="1.5" PointX="21.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.ServiceTypeIntroduction" Width="1.5" PointX="21.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.ServiceTypeKanoon" Width="1.5" PointX="21.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.ServiceTypeScreen" Width="1.5" PointX="21.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.Shift" Width="1.5" PointX="10.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.Speciality" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.specialityKind" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.Takekind_Recipe" Width="1.5" PointX="21.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.TblUser" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.tempturnno" Width="1.5" PointX="17.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.TurnStatu" Width="1.5" PointX="10.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.userKind" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.vacation" Width="1.5" PointX="5.25" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.version" Width="1.5" PointX="25.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.Dent_Tooth2" Width="1.5" PointX="25.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.Dent_Tooth3" Width="1.5" PointX="25.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.Dent_Tooth4" Width="1.5" PointX="13.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.Dent_Tooth5" Width="1.5" PointX="25.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dentistryModel.TblUsers_view" Width="1.5" PointX="19.75" PointY="26.75" IsExpanded="true" />
+        <AssociationConnector Association="dentistryModel.FK_AcessLevel_AcessLevel" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_Clinics_ClinicType" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_PlanVisit_Clinics" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_consult_RecipeServices" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_consult_TblUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_costconfirm_Detail_costconfirm_head" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_costconfirm_TblUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_EventsLog_EventsDescription" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_outcenter_OutCenterdepartment" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_outcenter_outcenterKind" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_Recipe_PaientStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_Recipe_PaientType" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_PlanVisit_TblUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_Recipe_Shifts" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_Recipe_TurnStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_Services_detail_Services_Head" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_TblUsers_Speciality" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_TblUsers_specialityKind" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_TblUsers_userKind" ManuallyRouted="false" />
+        <AssociationConnector Association="dentistryModel.FK_vacations_TblUsers" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dentistryModel.Refer" Width="1.5" PointX="14.75" PointY="19.75" />
+        <EntityTypeShape EntityType="dentistryModel.Refer_status" Width="1.5" PointX="16.75" PointY="19.75" />
+        <EntityTypeShape EntityType="dentistryModel.Refer_status_desc" Width="1.5" PointX="18.75" PointY="19.75" />
+        <EntityTypeShape EntityType="dentistryModel.Screen_count" Width="1.5" PointX="10.75" PointY="22.75" />
+        <EntityTypeShape EntityType="dentistryModel.TblCompany" Width="1.5" PointX="12.75" PointY="22.75" />
+        <EntityTypeShape EntityType="dentistryModel.TblManagement" Width="1.5" PointX="3.75" PointY="21.75" />
+        <EntityTypeShape EntityType="dentistryModel.TblMaritalStatu" Width="1.5" PointX="23.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dentistryModel.TblRelation" Width="1.5" PointX="26.75" PointY="3.75" />
+        <EntityTypeShape EntityType="dentistryModel.TblSubCompany" Width="1.5" PointX="2.75" PointY="27.75" />
+        <EntityTypeShape EntityType="dentistryModel.TblValidCenter" Width="1.5" PointX="4.75" PointY="27.75" />
+        <EntityTypeShape EntityType="dentistryModel.TblValidCenterCity" Width="1.5" PointX="6.75" PointY="27.75" />
+        <EntityTypeShape EntityType="dentistryModel.TblValidCenterZone" Width="1.5" PointX="28.75" PointY="3.75" />
+        <EntityTypeShape EntityType="dentistryModel.JobLocation" Width="1.5" PointX="0.75" PointY="23.75" />
+        <EntityTypeShape EntityType="dentistryModel.Tbl_ValidCenterZone" Width="1.5" PointX="2.75" PointY="24.75" />
+        <EntityTypeShape EntityType="dentistryModel.name" Width="1.5" PointX="26.375" PointY="0.75" />
+        <EntityTypeShape EntityType="dentistryModel.Radio_Services_request_Detail" Width="1.5" PointX="26.375" PointY="23.75" />
+        <EntityTypeShape EntityType="dentistryModel.TblEmployeetype" Width="1.5" PointX="24.375" PointY="27.75" />
+        <EntityTypeShape EntityType="dentistryModel.NiocPerson" Width="1.5" PointX="16.375" PointY="25.75" />
+        <EntityTypeShape EntityType="dentistryModel.EmployeeInfoTbl" Width="1.5" PointX="10.375" PointY="25.75" />
+        <EntityTypeShape EntityType="dentistryModel.PersonTbl" Width="1.5" PointX="28.375" PointY="6.75" />
+        <EntityTypeShape EntityType="dentistryModel.Radio_Services_request" Width="1.5" PointX="22.375" PointY="22.75" />
+        <EntityTypeShape EntityType="dentistryModel.IllnessHistory" Width="1.5" PointX="24.375" PointY="18.75" />
+        <EntityTypeShape EntityType="dentistryModel.familydentist_view" Width="1.5" PointX="26.375" PointY="18.75" />
+        <EntityTypeShape EntityType="dentistryModel.Services_Group_report" Width="1.5" PointX="28.375" PointY="0.75" />
+        <EntityTypeShape EntityType="dentistryModel.tariff" Width="1.5" PointX="7.375" PointY="22.75" />
+        <EntityTypeShape EntityType="dentistryModel.full_niocperson" Width="1.5" PointX="26.375" PointY="27.75" />
+        <EntityTypeShape EntityType="dentistryModel.Dent_Tooth" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="dentistryModel.dent_screen2" Width="1.5" PointX="12.375" PointY="28.75" />
+        <EntityTypeShape EntityType="dentistryModel.Event_report" Width="1.5" PointX="0.75" PointY="16.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

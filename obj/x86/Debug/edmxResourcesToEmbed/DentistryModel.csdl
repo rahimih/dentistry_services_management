@@ -1,0 +1,2580 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dentistryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AcessLevel">
+    <Key>
+      <PropertyRef Name="code" />
+    </Key>
+    <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserCode" Type="Int32" />
+    <Property Name="UserName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="AcessLevel1" Type="Byte" />
+    <NavigationProperty Name="TblUser" Relationship="Self.FK_AcessLevel_AcessLevel" FromRole="AcessLevel" ToRole="TblUsers" />
+  </EntityType>
+  <EntityType Name="Clinic">
+    <Key>
+      <PropertyRef Name="ClinicCode" />
+    </Key>
+    <Property Name="ClinicCode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClinicName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Depatrment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoomNO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ClinicType" Type="Byte" />
+    <Property Name="Comment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ClinicType1" Relationship="Self.FK_Clinics_ClinicType" FromRole="Clinics" ToRole="ClinicType" />
+    <NavigationProperty Name="PlanVisits" Relationship="Self.FK_PlanVisit_Clinics" FromRole="Clinics" ToRole="PlanVisit" />
+    <Property Name="deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="ClinicType">
+    <Key>
+      <PropertyRef Name="ClinicTypecode" />
+    </Key>
+    <Property Name="ClinicTypecode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClinictypeName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Clinics" Relationship="Self.FK_Clinics_ClinicType" FromRole="ClinicType" ToRole="Clinics" />
+  </EntityType>
+  <EntityType Name="consult">
+    <Key>
+      <PropertyRef Name="consultCode" />
+    </Key>
+    <Property Name="consultCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Idperson" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Persno" Type="Int32" />
+    <Property Name="Fkvdfamily" Type="Int32" />
+    <Property Name="Icd10code" Type="Int32" />
+    <Property Name="Servicescode" Type="Int32" />
+    <Property Name="ToothID" Type="Byte" />
+    <Property Name="introductionDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="introductionTime" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ConsultDoctors" Type="Int32" />
+    <Property Name="Doctorscode" Type="Int32" />
+    <Property Name="usercode" Type="Int32" />
+    <NavigationProperty Name="RecipeService" Relationship="Self.FK_consult_RecipeServices" FromRole="consult" ToRole="RecipeServices" />
+    <NavigationProperty Name="TblUser" Relationship="Self.FK_consult_TblUsers" FromRole="consult" ToRole="TblUsers" />
+    <Property Name="deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="costconfirm_Detail">
+    <Key>
+      <PropertyRef Name="costconfirmDetailCode" />
+    </Key>
+    <Property Name="costconfirmDetailCode" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="costconfirmHeadCode" Type="Int64" />
+    <Property Name="Servicescode" Type="Int32" />
+    <Property Name="ToothID_old" Type="Byte" />
+    <Property Name="Deleted" Type="Boolean" />
+    <Property Name="ToothID" Type="Byte" />
+    <NavigationProperty Name="costconfirm_head" Relationship="Self.FK_costconfirm_Detail_costconfirm_head" FromRole="costconfirm_Detail" ToRole="costconfirm_head" />
+  </EntityType>
+  <EntityType Name="costconfirm_head">
+    <Key>
+      <PropertyRef Name="costconfirmCode" />
+    </Key>
+    <Property Name="costconfirmCode" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Persno" Type="Int32" />
+    <Property Name="Fkvdfamily" Type="Int32" />
+    <Property Name="VisitDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Doctorsoutname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Confirmdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Confirmtime" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Doctorscode" Type="Int32" />
+    <Property Name="usercode" Type="Int32" />
+    <Property Name="Ipadress" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="deleted" Type="Boolean" />
+    <Property Name="relationorderno" Type="Int32" />
+    <NavigationProperty Name="costconfirm_Detail" Relationship="Self.FK_costconfirm_Detail_costconfirm_head" FromRole="costconfirm_head" ToRole="costconfirm_Detail" />
+    <NavigationProperty Name="TblUser" Relationship="Self.FK_costconfirm_TblUsers" FromRole="costconfirm_head" ToRole="TblUsers" />
+    <Property Name="Fkvdfamily1" Type="Int32" />
+  </EntityType>
+  <EntityType Name="dent_neededservice">
+    <Key>
+      <PropertyRef Name="pk_dent_neededService" />
+    </Key>
+    <Property Name="pk_dent_neededService" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dent_neededServicedesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="group_s" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="group_2" Type="Byte" />
+    <Property Name="screen_Services_view" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="dent_screen1">
+    <Key>
+      <PropertyRef Name="pk_dent_Screen1" />
+    </Key>
+    <Property Name="pk_dent_Screen1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_dent_Screen2" Type="Int32" />
+    <Property Name="toothid_old" Type="Int32" />
+    <Property Name="fk_dent_neededService" Type="Int32" />
+    <Property Name="SpecificationDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PAComment" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Tcomment" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="RctComment2" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="toothid" Type="Int32" />
+    <Property Name="DentalSurgeryComment" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ExtractionComment" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="CLComment" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="OtherFindingComment" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="doctorsService">
+    <Key>
+      <PropertyRef Name="doctorsServiceCode" />
+    </Key>
+    <Property Name="doctorsServiceCode" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Idperson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Persno" Type="Int32" />
+    <Property Name="Fkvdfamily" Type="Int32" />
+    <Property Name="Servicescode" Type="Int32" />
+    <Property Name="ToothID" Type="Byte" />
+    <Property Name="Doctorscode" Type="Int32" />
+    <Property Name="Planvst" Type="Int32" />
+    <Property Name="Recipeturn" Type="Int32" />
+    <Property Name="recipeID" Type="Int32" />
+    <Property Name="Status" Type="Byte" />
+    <Property Name="Usercode" Type="Int32" />
+    <Property Name="Insertdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Inserttime" Type="Time" Precision="7" />
+    <Property Name="deleted" Type="Boolean" />
+    <Property Name="Ipadress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="relationorderno" Type="Int32" />
+    <Property Name="ToothID_old" Type="Int32" />
+    <Property Name="Fkvdfamily1" Type="Int32" />
+    <Property Name="Fkvdfamily2" Type="Int32" />
+  </EntityType>
+  <EntityType Name="DoctorsWorkTime">
+    <Key>
+      <PropertyRef Name="DoctorsWorkTimeCode" />
+    </Key>
+    <Property Name="DoctorsWorkTimeCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Doctorscode" Type="Int32" />
+    <Property Name="Workdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Workdate_eng" Type="DateTime" Precision="3" />
+    <Property Name="Workshift" Type="Byte" />
+    <Property Name="timeFrom" Type="Time" Precision="7" />
+    <Property Name="timeTo" Type="Time" Precision="7" />
+    <Property Name="Kind" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Usercode" Type="Int32" />
+    <Property Name="deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="EventsDescription">
+    <Key>
+      <PropertyRef Name="LogCode" />
+    </Key>
+    <Property Name="LogCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EventsLogs" Relationship="Self.FK_EventsLog_EventsDescription" FromRole="EventsDescription" ToRole="EventsLog" />
+  </EntityType>
+  <EntityType Name="EventsLog">
+    <Key>
+      <PropertyRef Name="EventsLogCode" />
+    </Key>
+    <Property Name="EventsLogCode" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="usercode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="logdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="logtime" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="LogCode" Type="Int32" />
+    <Property Name="Ipadress" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="changecode" Type="Int32" />
+    <NavigationProperty Name="EventsDescription" Relationship="Self.FK_EventsLog_EventsDescription" FromRole="EventsLog" ToRole="EventsDescription" />
+  </EntityType>
+  <EntityType Name="Introduction_Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Introduction_Detail">
+    <Key>
+      <PropertyRef Name="IntroductionDetailCode" />
+    </Key>
+    <Property Name="IntroductionDetailCode" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IntroductionHeadCode" Type="Int64" />
+    <Property Name="Servicescode" Type="Int32" />
+    <Property Name="ToothID1" Type="Byte" />
+    <Property Name="ToothID2" Type="Byte" />
+    <Property Name="ToothID3" Type="Byte" />
+    <Property Name="ToothID4" Type="Byte" />
+    <Property Name="ToothID5" Type="Byte" />
+    <Property Name="Deleted" Type="Boolean" />
+    <Property Name="ToothID1_old" Type="Byte" />
+  </EntityType>
+  <EntityType Name="introduction_Head">
+    <Key>
+      <PropertyRef Name="introductionCode" />
+    </Key>
+    <Property Name="introductionCode" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Idperson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Persno" Type="Int32" />
+    <Property Name="Fkvdfamily" Type="Int32" />
+    <Property Name="Personalcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Outcentercode" Type="Int32" />
+    <Property Name="introductionDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="introductionTime" Type="Time" Precision="7" />
+    <Property Name="Doctorscode" Type="Int32" />
+    <Property Name="introductionkind" Type="Int32" />
+    <Property Name="usercode" Type="Int32" />
+    <Property Name="TurnId" Type="Int64" />
+    <Property Name="ipadress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="deleted" Type="Boolean" />
+    <Property Name="relationorderno" Type="Int32" />
+    <Property Name="Fkvdfamily1" Type="Int32" />
+  </EntityType>
+  <EntityType Name="IntroductionComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Introductioncode" Type="Int64" />
+    <Property Name="CommentCode" Type="Int32" />
+    <Property Name="deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="IntroductionKind">
+    <Key>
+      <PropertyRef Name="IntroductionkindCode" />
+    </Key>
+    <Property Name="IntroductionkindCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IntroductionKind1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Medicalrest">
+    <Key>
+      <PropertyRef Name="MedicalrestCode" />
+    </Key>
+    <Property Name="MedicalrestCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Idperson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Persno" Type="Int32" />
+    <Property Name="Fkvdfamily" Type="Int32" />
+    <Property Name="currentdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Currenttime" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Firstrestdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Endrestdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Returnworkdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Icd10code" Type="Int32" />
+    <Property Name="Countofrest" Type="Byte" />
+    <Property Name="Doctorscode" Type="Int32" />
+    <Property Name="usercode" Type="Int32" />
+    <Property Name="comment" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="outcenter">
+    <Key>
+      <PropertyRef Name="outcenterCode" />
+    </Key>
+    <Property Name="outcenterCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="outcenterName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="outcenterKind" Type="Byte" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="OutCenterdepartment" Type="Byte" />
+    <Property Name="beginDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="beginDate_Eng" Type="DateTime" Precision="3" />
+    <Property Name="Enddate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Enddate_Eng" Type="DateTime" Precision="3" />
+    <Property Name="usercode" Type="Int32" />
+    <Property Name="adress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="outcenternamePrint" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OutCenterdepartment1" Relationship="Self.FK_outcenter_OutCenterdepartment" FromRole="outcenter" ToRole="OutCenterdepartment" />
+    <NavigationProperty Name="outcenterKind1" Relationship="Self.FK_outcenter_outcenterKind" FromRole="outcenter" ToRole="outcenterKind" />
+    <Property Name="deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="OutCenterdepartment">
+    <Key>
+      <PropertyRef Name="OutCenterDepartmentCode" />
+    </Key>
+    <Property Name="OutCenterDepartmentCode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="departmentDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="outcenters" Relationship="Self.FK_outcenter_OutCenterdepartment" FromRole="OutCenterdepartment" ToRole="outcenter" />
+  </EntityType>
+  <EntityType Name="outcenterKind">
+    <Key>
+      <PropertyRef Name="outcenterKindCode" />
+    </Key>
+    <Property Name="outcenterKindCode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kindDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PrintDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="outcenters" Relationship="Self.FK_outcenter_outcenterKind" FromRole="outcenterKind" ToRole="outcenter" />
+  </EntityType>
+  <EntityType Name="PaientStatu">
+    <Key>
+      <PropertyRef Name="PaientStatuscode" />
+    </Key>
+    <Property Name="PaientStatuscode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaientStatusName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Recipes" Relationship="Self.FK_Recipe_PaientStatus" FromRole="PaientStatus" ToRole="Recipe" />
+  </EntityType>
+  <EntityType Name="PaientType">
+    <Key>
+      <PropertyRef Name="PaientTypeCode" />
+    </Key>
+    <Property Name="PaientTypeCode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaientTypeName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Recipes" Relationship="Self.FK_Recipe_PaientType" FromRole="PaientType" ToRole="Recipe" />
+    <Property Name="typep" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PlanVisit">
+    <Key>
+      <PropertyRef Name="planvisit_Code" />
+    </Key>
+    <Property Name="planvisit_Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Doctorscode" Type="Int32" />
+    <Property Name="Cliniccode" Type="Byte" />
+    <Property Name="Capacity" Type="Byte" />
+    <Property Name="Fromdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="todate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Shiftcode" Type="Byte" />
+    <Property Name="Fromtime" Type="Time" Precision="7" />
+    <Property Name="totime" Type="Time" Precision="7" />
+    <Property Name="intervaltime" Type="Byte" />
+    <Property Name="usercode" Type="Int32" />
+    <Property Name="insertdate" Type="DateTime" Precision="0" />
+    <Property Name="inserttime" Type="Time" Precision="7" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="kind" Type="Byte" />
+    <Property Name="InternetCapacity" Type="Byte" />
+    <NavigationProperty Name="Clinic" Relationship="Self.FK_PlanVisit_Clinics" FromRole="PlanVisit" ToRole="Clinics" />
+    <NavigationProperty Name="TblUser" Relationship="Self.FK_PlanVisit_TblUsers" FromRole="PlanVisit" ToRole="TblUsers" />
+    <Property Name="deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Recipe">
+    <Key>
+      <PropertyRef Name="Turnid" />
+    </Key>
+    <Property Name="Turnid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="persno" Type="Int32" />
+    <Property Name="Personelcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Fkvdfamily" Type="Int32" />
+    <Property Name="Currentdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="currentTime" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Turndate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Turntime" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="turnNo" Type="Byte" />
+    <Property Name="DoctorsCode" Type="Int32" />
+    <Property Name="Planvisit_code" Type="Int32" />
+    <Property Name="Servicescode" Type="Byte" />
+    <Property Name="TurnStatus" Type="Byte" />
+    <Property Name="Shiftcode" Type="Byte" />
+    <Property Name="ToothID_old" Type="Byte" />
+    <Property Name="PaientType" Type="Byte" />
+    <Property Name="PaientStatus" Type="Byte" />
+    <Property Name="Usercode" Type="Int32" />
+    <Property Name="recipekind" Type="Byte" />
+    <Property Name="ipadress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="validcenterzone" Type="Int32" />
+    <Property Name="TOOTHID" Type="Byte" />
+    <Property Name="relationorderno" Type="Int32" />
+    <Property Name="turnstatusold" Type="Byte" />
+    <Property Name="specialityKindCode" Type="Int32" />
+    <Property Name="age" Type="Int32" />
+    <NavigationProperty Name="PaientStatu" Relationship="Self.FK_Recipe_PaientStatus" FromRole="Recipe" ToRole="PaientStatus" />
+    <NavigationProperty Name="PaientType1" Relationship="Self.FK_Recipe_PaientType" FromRole="Recipe" ToRole="PaientType" />
+    <NavigationProperty Name="Shift" Relationship="Self.FK_Recipe_Shifts" FromRole="Recipe" ToRole="Shifts" />
+    <NavigationProperty Name="TurnStatu" Relationship="Self.FK_Recipe_TurnStatus" FromRole="Recipe" ToRole="TurnStatus" />
+    <Property Name="validcenter" Type="Int32" />
+    <Property Name="Fkvdfamily1" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Recipe_comment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Comment" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="RecipeError">
+    <Key>
+      <PropertyRef Name="pk_RecipeError" />
+    </Key>
+    <Property Name="pk_RecipeError" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="oldfk_vdfamily1" Type="Int32" />
+    <Property Name="Error" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="RecipeUser" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="InsertDate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="EndDate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="fk_vdfamily" Type="Int32" />
+  </EntityType>
+  <EntityType Name="RecipeService">
+    <Key>
+      <PropertyRef Name="RecipeServices_code" />
+    </Key>
+    <Property Name="RecipeServices_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Recipe_Desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="consults" Relationship="Self.FK_consult_RecipeServices" FromRole="RecipeServices" ToRole="consult" />
+  </EntityType>
+  <EntityType Name="Services_detail">
+    <Key>
+      <PropertyRef Name="Services_detail_Code" />
+    </Key>
+    <Property Name="Services_detail_Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Services_Head_code" Type="Int32" />
+    <Property Name="Services_detail_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ServicesTime" Type="Byte" />
+    <Property Name="K_NO" Type="Double" />
+    <Property Name="Kkanoon_K_NO" Type="Double" />
+    <Property Name="f16_K_NO" Type="Double" />
+    <Property Name="ServiceTypeF16Code" Type="Int32" />
+    <Property Name="ServiceTypeKanoonCode" Type="Int32" />
+    <Property Name="TypeScreen_code" Type="Int32" />
+    <Property Name="Tarefe_code" Type="Int32" />
+    <Property Name="Kanal_NO" Type="Byte" />
+    <Property Name="Pinaj_NO" Type="Byte" />
+    <Property Name="Pinkanal_NO" Type="Byte" />
+    <Property Name="Pinamalgam_NO" Type="Byte" />
+    <Property Name="Pinkampozit_NO" Type="Byte" />
+    <Property Name="ISValid" Type="Boolean" />
+    <NavigationProperty Name="Services_Head" Relationship="Self.FK_Services_detail_Services_Head" FromRole="Services_detail" ToRole="Services_Head" />
+    <Property Name="Zarib" Type="Boolean" />
+    <Property Name="report_health" Type="Boolean" />
+    <Property Name="K_NO1" Type="Double" />
+    <Property Name="ISValid1" Type="Boolean" />
+    <Property Name="childzarib" Type="Boolean" />
+    <Property Name="deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Services_Head">
+    <Key>
+      <PropertyRef Name="Services_Head_code" />
+    </Key>
+    <Property Name="Services_Head_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Services_Head_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Services_detail" Relationship="Self.FK_Services_detail_Services_Head" FromRole="Services_Head" ToRole="Services_detail" />
+  </EntityType>
+  <EntityType Name="ServiceTypeF16">
+    <Key>
+      <PropertyRef Name="ServiceTypeF16Code" />
+    </Key>
+    <Property Name="ServiceTypeF16Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceTypeF16Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="F16Code" Type="Int32" />
+    <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="ServiceTypeIntroduction">
+    <Key>
+      <PropertyRef Name="ServiceId" />
+    </Key>
+    <Property Name="ServiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Servicename" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="ServiceTypeKanoon">
+    <Key>
+      <PropertyRef Name="ServiceTypeKanoonCode" />
+    </Key>
+    <Property Name="ServiceTypeKanoonCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceTypeKanoonName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Xmlcode" Type="Int32" />
+    <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="ServiceTypeScreen">
+    <Key>
+      <PropertyRef Name="ServiceTypeScreenCode" />
+    </Key>
+    <Property Name="ServiceTypeScreenCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceTypeScreenName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="screenCode" Type="Int32" />
+    <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Shift">
+    <Key>
+      <PropertyRef Name="Shiftcode" />
+    </Key>
+    <Property Name="Shiftcode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Shiftname" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Fromtime" Type="Time" Precision="7" />
+    <Property Name="totime" Type="Time" Precision="7" />
+    <Property Name="XmlShiftCode" Type="Int32" />
+    <NavigationProperty Name="Recipes" Relationship="Self.FK_Recipe_Shifts" FromRole="Shifts" ToRole="Recipe" />
+  </EntityType>
+  <EntityType Name="Speciality">
+    <Key>
+      <PropertyRef Name="specialityCode" />
+    </Key>
+    <Property Name="specialityCode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Speciality1" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="specialityXMLCode" Type="Int32" />
+    <NavigationProperty Name="TblUsers" Relationship="Self.FK_TblUsers_Speciality" FromRole="Speciality" ToRole="TblUsers" />
+  </EntityType>
+  <EntityType Name="specialityKind">
+    <Key>
+      <PropertyRef Name="specialityKindCode" />
+    </Key>
+    <Property Name="specialityKindCode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="specialityKind1" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="specialityKindXMLCode" Type="Int32" />
+    <NavigationProperty Name="TblUsers" Relationship="Self.FK_TblUsers_specialityKind" FromRole="specialityKind" ToRole="TblUsers" />
+  </EntityType>
+  <EntityType Name="Takekind_Recipe">
+    <Key>
+      <PropertyRef Name="Takekind_RecipeCode" />
+    </Key>
+    <Property Name="Takekind_RecipeCode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Takekind_RecipeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TblUser">
+    <Key>
+      <PropertyRef Name="UserCode" />
+    </Key>
+    <Property Name="UserCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="personalNO" Type="Int32" />
+    <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SN" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="GroupCode" Type="Byte" />
+    <Property Name="DoctorNO" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="specialityKindCode" Type="Byte" />
+    <Property Name="specialityCode" Type="Byte" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="EnglishName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="title" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="PersianTitle" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="mobile" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="comment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AcessLevels" Relationship="Self.FK_AcessLevel_AcessLevel" FromRole="TblUsers" ToRole="AcessLevel" />
+    <NavigationProperty Name="consults" Relationship="Self.FK_consult_TblUsers" FromRole="TblUsers" ToRole="consult" />
+    <NavigationProperty Name="costconfirm_head" Relationship="Self.FK_costconfirm_TblUsers" FromRole="TblUsers" ToRole="costconfirm_head" />
+    <NavigationProperty Name="PlanVisits" Relationship="Self.FK_PlanVisit_TblUsers" FromRole="TblUsers" ToRole="PlanVisit" />
+    <NavigationProperty Name="Speciality" Relationship="Self.FK_TblUsers_Speciality" FromRole="TblUsers" ToRole="Speciality" />
+    <NavigationProperty Name="specialityKind" Relationship="Self.FK_TblUsers_specialityKind" FromRole="TblUsers" ToRole="specialityKind" />
+    <NavigationProperty Name="userKind" Relationship="Self.FK_TblUsers_userKind" FromRole="TblUsers" ToRole="userKind" />
+    <NavigationProperty Name="vacations" Relationship="Self.FK_vacations_TblUsers" FromRole="TblUsers" ToRole="vacations" />
+    <Property Name="Screen_count" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tempturnno">
+    <Key>
+      <PropertyRef Name="turnno" />
+    </Key>
+    <Property Name="turnno" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="temp" Type="Byte" />
+  </EntityType>
+  <EntityType Name="TurnStatu">
+    <Key>
+      <PropertyRef Name="TurnStatuscode" />
+    </Key>
+    <Property Name="TurnStatuscode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TurnStatusName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Recipes" Relationship="Self.FK_Recipe_TurnStatus" FromRole="TurnStatus" ToRole="Recipe" />
+  </EntityType>
+  <EntityType Name="userKind">
+    <Key>
+      <PropertyRef Name="GroupCode" />
+    </Key>
+    <Property Name="GroupCode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TblUsers" Relationship="Self.FK_TblUsers_userKind" FromRole="userKind" ToRole="TblUsers" />
+  </EntityType>
+  <EntityType Name="vacation">
+    <Key>
+      <PropertyRef Name="vacationsCode" />
+    </Key>
+    <Property Name="vacationsCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Doctorscode" Type="Int32" />
+    <Property Name="vacationType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fromDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="fromDate_Eng" Type="DateTime" Precision="3" />
+    <Property Name="Todate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Todate_Eng" Type="DateTime" Precision="3" />
+    <Property Name="usercode" Type="Int32" />
+    <NavigationProperty Name="TblUser" Relationship="Self.FK_vacations_TblUsers" FromRole="vacations" ToRole="TblUsers" />
+    <Property Name="deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="version">
+    <Key>
+      <PropertyRef Name="p_Key" />
+    </Key>
+    <Property Name="p_Key" Type="Int32" Nullable="false" />
+    <Property Name="Ver_dafater" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Ver_Screen" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ver_lcd" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ver_lab" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Ver_Dgs" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Dent_Tooth2">
+    <Key>
+      <PropertyRef Name="ToothID" />
+    </Key>
+    <Property Name="ToothID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ToothName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ToothImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Dent_Tooth3">
+    <Key>
+      <PropertyRef Name="ToothID" />
+    </Key>
+    <Property Name="ToothID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ToothName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ToothImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Dent_Tooth4">
+    <Key>
+      <PropertyRef Name="ToothID" />
+    </Key>
+    <Property Name="ToothID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ToothName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ToothImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Dent_Tooth5">
+    <Key>
+      <PropertyRef Name="ToothID" />
+    </Key>
+    <Property Name="ToothID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ToothName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ToothImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TblUsers_view">
+    <Key>
+      <PropertyRef Name="UserCode" />
+    </Key>
+    <Property Name="UserCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_AcessLevel_AcessLevel">
+    <End Role="TblUsers" Type="Self.TblUser" Multiplicity="0..1" />
+    <End Role="AcessLevel" Type="Self.AcessLevel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUsers">
+        <PropertyRef Name="UserCode" />
+      </Principal>
+      <Dependent Role="AcessLevel">
+        <PropertyRef Name="UserCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Clinics_ClinicType">
+    <End Role="ClinicType" Type="Self.ClinicType" Multiplicity="0..1" />
+    <End Role="Clinics" Type="Self.Clinic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClinicType">
+        <PropertyRef Name="ClinicTypecode" />
+      </Principal>
+      <Dependent Role="Clinics">
+        <PropertyRef Name="ClinicType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlanVisit_Clinics">
+    <End Role="Clinics" Type="Self.Clinic" Multiplicity="0..1" />
+    <End Role="PlanVisit" Type="Self.PlanVisit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clinics">
+        <PropertyRef Name="ClinicCode" />
+      </Principal>
+      <Dependent Role="PlanVisit">
+        <PropertyRef Name="Cliniccode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_consult_RecipeServices">
+    <End Role="RecipeServices" Type="Self.RecipeService" Multiplicity="0..1" />
+    <End Role="consult" Type="Self.consult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RecipeServices">
+        <PropertyRef Name="RecipeServices_code" />
+      </Principal>
+      <Dependent Role="consult">
+        <PropertyRef Name="Servicescode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_consult_TblUsers">
+    <End Role="TblUsers" Type="Self.TblUser" Multiplicity="0..1" />
+    <End Role="consult" Type="Self.consult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUsers">
+        <PropertyRef Name="UserCode" />
+      </Principal>
+      <Dependent Role="consult">
+        <PropertyRef Name="ConsultDoctors" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_costconfirm_Detail_costconfirm_head">
+    <End Role="costconfirm_head" Type="Self.costconfirm_head" Multiplicity="0..1" />
+    <End Role="costconfirm_Detail" Type="Self.costconfirm_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="costconfirm_head">
+        <PropertyRef Name="costconfirmCode" />
+      </Principal>
+      <Dependent Role="costconfirm_Detail">
+        <PropertyRef Name="costconfirmHeadCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_costconfirm_TblUsers">
+    <End Role="TblUsers" Type="Self.TblUser" Multiplicity="0..1" />
+    <End Role="costconfirm_head" Type="Self.costconfirm_head" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUsers">
+        <PropertyRef Name="UserCode" />
+      </Principal>
+      <Dependent Role="costconfirm_head">
+        <PropertyRef Name="Doctorscode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventsLog_EventsDescription">
+    <End Role="EventsDescription" Type="Self.EventsDescription" Multiplicity="0..1" />
+    <End Role="EventsLog" Type="Self.EventsLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventsDescription">
+        <PropertyRef Name="LogCode" />
+      </Principal>
+      <Dependent Role="EventsLog">
+        <PropertyRef Name="LogCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_outcenter_OutCenterdepartment">
+    <End Role="OutCenterdepartment" Type="Self.OutCenterdepartment" Multiplicity="0..1" />
+    <End Role="outcenter" Type="Self.outcenter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OutCenterdepartment">
+        <PropertyRef Name="OutCenterDepartmentCode" />
+      </Principal>
+      <Dependent Role="outcenter">
+        <PropertyRef Name="OutCenterdepartment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_outcenter_outcenterKind">
+    <End Role="outcenterKind" Type="Self.outcenterKind" Multiplicity="0..1" />
+    <End Role="outcenter" Type="Self.outcenter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="outcenterKind">
+        <PropertyRef Name="outcenterKindCode" />
+      </Principal>
+      <Dependent Role="outcenter">
+        <PropertyRef Name="outcenterKind" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recipe_PaientStatus">
+    <End Role="PaientStatus" Type="Self.PaientStatu" Multiplicity="0..1" />
+    <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaientStatus">
+        <PropertyRef Name="PaientStatuscode" />
+      </Principal>
+      <Dependent Role="Recipe">
+        <PropertyRef Name="PaientStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recipe_PaientType">
+    <End Role="PaientType" Type="Self.PaientType" Multiplicity="0..1" />
+    <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaientType">
+        <PropertyRef Name="PaientTypeCode" />
+      </Principal>
+      <Dependent Role="Recipe">
+        <PropertyRef Name="PaientType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlanVisit_TblUsers">
+    <End Role="TblUsers" Type="Self.TblUser" Multiplicity="0..1" />
+    <End Role="PlanVisit" Type="Self.PlanVisit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUsers">
+        <PropertyRef Name="UserCode" />
+      </Principal>
+      <Dependent Role="PlanVisit">
+        <PropertyRef Name="Doctorscode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recipe_Shifts">
+    <End Role="Shifts" Type="Self.Shift" Multiplicity="0..1" />
+    <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shifts">
+        <PropertyRef Name="Shiftcode" />
+      </Principal>
+      <Dependent Role="Recipe">
+        <PropertyRef Name="Shiftcode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recipe_TurnStatus">
+    <End Role="TurnStatus" Type="Self.TurnStatu" Multiplicity="0..1" />
+    <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TurnStatus">
+        <PropertyRef Name="TurnStatuscode" />
+      </Principal>
+      <Dependent Role="Recipe">
+        <PropertyRef Name="TurnStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Services_detail_Services_Head">
+    <End Role="Services_Head" Type="Self.Services_Head" Multiplicity="0..1" />
+    <End Role="Services_detail" Type="Self.Services_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Services_Head">
+        <PropertyRef Name="Services_Head_code" />
+      </Principal>
+      <Dependent Role="Services_detail">
+        <PropertyRef Name="Services_Head_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblUsers_Speciality">
+    <End Role="Speciality" Type="Self.Speciality" Multiplicity="0..1" />
+    <End Role="TblUsers" Type="Self.TblUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Speciality">
+        <PropertyRef Name="specialityCode" />
+      </Principal>
+      <Dependent Role="TblUsers">
+        <PropertyRef Name="specialityCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblUsers_specialityKind">
+    <End Role="specialityKind" Type="Self.specialityKind" Multiplicity="0..1" />
+    <End Role="TblUsers" Type="Self.TblUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="specialityKind">
+        <PropertyRef Name="specialityKindCode" />
+      </Principal>
+      <Dependent Role="TblUsers">
+        <PropertyRef Name="specialityKindCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblUsers_userKind">
+    <End Role="userKind" Type="Self.userKind" Multiplicity="0..1" />
+    <End Role="TblUsers" Type="Self.TblUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userKind">
+        <PropertyRef Name="GroupCode" />
+      </Principal>
+      <Dependent Role="TblUsers">
+        <PropertyRef Name="GroupCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_vacations_TblUsers">
+    <End Role="TblUsers" Type="Self.TblUser" Multiplicity="0..1" />
+    <End Role="vacations" Type="Self.vacation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUsers">
+        <PropertyRef Name="UserCode" />
+      </Principal>
+      <Dependent Role="vacations">
+        <PropertyRef Name="Doctorscode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dentistryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AcessLevels" EntityType="Self.AcessLevel" />
+    <EntitySet Name="Clinics" EntityType="Self.Clinic" />
+    <EntitySet Name="ClinicTypes" EntityType="Self.ClinicType" />
+    <EntitySet Name="consults" EntityType="Self.consult" />
+    <EntitySet Name="costconfirm_Detail" EntityType="Self.costconfirm_Detail" />
+    <EntitySet Name="costconfirm_head" EntityType="Self.costconfirm_head" />
+    <EntitySet Name="dent_neededservice" EntityType="Self.dent_neededservice" />
+    <EntitySet Name="dent_screen1" EntityType="Self.dent_screen1" />
+    <EntitySet Name="doctorsServices" EntityType="Self.doctorsService" />
+    <EntitySet Name="DoctorsWorkTimes" EntityType="Self.DoctorsWorkTime" />
+    <EntitySet Name="EventsDescriptions" EntityType="Self.EventsDescription" />
+    <EntitySet Name="EventsLogs" EntityType="Self.EventsLog" />
+    <EntitySet Name="Introduction_Comment" EntityType="Self.Introduction_Comment" />
+    <EntitySet Name="Introduction_Detail" EntityType="Self.Introduction_Detail" />
+    <EntitySet Name="introduction_Head" EntityType="Self.introduction_Head" />
+    <EntitySet Name="IntroductionComments" EntityType="Self.IntroductionComment" />
+    <EntitySet Name="IntroductionKinds" EntityType="Self.IntroductionKind" />
+    <EntitySet Name="Medicalrests" EntityType="Self.Medicalrest" />
+    <EntitySet Name="outcenters" EntityType="Self.outcenter" />
+    <EntitySet Name="OutCenterdepartments" EntityType="Self.OutCenterdepartment" />
+    <EntitySet Name="outcenterKinds" EntityType="Self.outcenterKind" />
+    <EntitySet Name="PaientStatus" EntityType="Self.PaientStatu" />
+    <EntitySet Name="PaientTypes" EntityType="Self.PaientType" />
+    <EntitySet Name="PlanVisits" EntityType="Self.PlanVisit" />
+    <EntitySet Name="Recipes" EntityType="Self.Recipe" />
+    <EntitySet Name="Recipe_comment" EntityType="Self.Recipe_comment" />
+    <EntitySet Name="RecipeErrors" EntityType="Self.RecipeError" />
+    <EntitySet Name="RecipeServices" EntityType="Self.RecipeService" />
+    <EntitySet Name="Services_detail" EntityType="Self.Services_detail" />
+    <EntitySet Name="Services_Head" EntityType="Self.Services_Head" />
+    <EntitySet Name="ServiceTypeF16" EntityType="Self.ServiceTypeF16" />
+    <EntitySet Name="ServiceTypeIntroductions" EntityType="Self.ServiceTypeIntroduction" />
+    <EntitySet Name="ServiceTypeKanoons" EntityType="Self.ServiceTypeKanoon" />
+    <EntitySet Name="ServiceTypeScreens" EntityType="Self.ServiceTypeScreen" />
+    <EntitySet Name="Shifts" EntityType="Self.Shift" />
+    <EntitySet Name="Specialities" EntityType="Self.Speciality" />
+    <EntitySet Name="specialityKinds" EntityType="Self.specialityKind" />
+    <EntitySet Name="Takekind_Recipe" EntityType="Self.Takekind_Recipe" />
+    <EntitySet Name="TblUsers" EntityType="Self.TblUser" />
+    <EntitySet Name="tempturnnoes" EntityType="Self.tempturnno" />
+    <EntitySet Name="TurnStatus" EntityType="Self.TurnStatu" />
+    <EntitySet Name="userKinds" EntityType="Self.userKind" />
+    <EntitySet Name="vacations" EntityType="Self.vacation" />
+    <EntitySet Name="versions" EntityType="Self.version" />
+    <EntitySet Name="Dent_Tooth2" EntityType="Self.Dent_Tooth2" />
+    <EntitySet Name="Dent_Tooth3" EntityType="Self.Dent_Tooth3" />
+    <EntitySet Name="Dent_Tooth4" EntityType="Self.Dent_Tooth4" />
+    <EntitySet Name="Dent_Tooth5" EntityType="Self.Dent_Tooth5" />
+    <EntitySet Name="TblUsers_view" EntityType="Self.TblUsers_view" />
+    <AssociationSet Name="FK_AcessLevel_AcessLevel" Association="Self.FK_AcessLevel_AcessLevel">
+      <End Role="TblUsers" EntitySet="TblUsers" />
+      <End Role="AcessLevel" EntitySet="AcessLevels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Clinics_ClinicType" Association="Self.FK_Clinics_ClinicType">
+      <End Role="ClinicType" EntitySet="ClinicTypes" />
+      <End Role="Clinics" EntitySet="Clinics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanVisit_Clinics" Association="Self.FK_PlanVisit_Clinics">
+      <End Role="Clinics" EntitySet="Clinics" />
+      <End Role="PlanVisit" EntitySet="PlanVisits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_consult_RecipeServices" Association="Self.FK_consult_RecipeServices">
+      <End Role="RecipeServices" EntitySet="RecipeServices" />
+      <End Role="consult" EntitySet="consults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_consult_TblUsers" Association="Self.FK_consult_TblUsers">
+      <End Role="TblUsers" EntitySet="TblUsers" />
+      <End Role="consult" EntitySet="consults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_costconfirm_Detail_costconfirm_head" Association="Self.FK_costconfirm_Detail_costconfirm_head">
+      <End Role="costconfirm_head" EntitySet="costconfirm_head" />
+      <End Role="costconfirm_Detail" EntitySet="costconfirm_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_costconfirm_TblUsers" Association="Self.FK_costconfirm_TblUsers">
+      <End Role="TblUsers" EntitySet="TblUsers" />
+      <End Role="costconfirm_head" EntitySet="costconfirm_head" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventsLog_EventsDescription" Association="Self.FK_EventsLog_EventsDescription">
+      <End Role="EventsDescription" EntitySet="EventsDescriptions" />
+      <End Role="EventsLog" EntitySet="EventsLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_outcenter_OutCenterdepartment" Association="Self.FK_outcenter_OutCenterdepartment">
+      <End Role="OutCenterdepartment" EntitySet="OutCenterdepartments" />
+      <End Role="outcenter" EntitySet="outcenters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_outcenter_outcenterKind" Association="Self.FK_outcenter_outcenterKind">
+      <End Role="outcenterKind" EntitySet="outcenterKinds" />
+      <End Role="outcenter" EntitySet="outcenters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recipe_PaientStatus" Association="Self.FK_Recipe_PaientStatus">
+      <End Role="PaientStatus" EntitySet="PaientStatus" />
+      <End Role="Recipe" EntitySet="Recipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recipe_PaientType" Association="Self.FK_Recipe_PaientType">
+      <End Role="PaientType" EntitySet="PaientTypes" />
+      <End Role="Recipe" EntitySet="Recipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanVisit_TblUsers" Association="Self.FK_PlanVisit_TblUsers">
+      <End Role="TblUsers" EntitySet="TblUsers" />
+      <End Role="PlanVisit" EntitySet="PlanVisits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recipe_Shifts" Association="Self.FK_Recipe_Shifts">
+      <End Role="Shifts" EntitySet="Shifts" />
+      <End Role="Recipe" EntitySet="Recipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recipe_TurnStatus" Association="Self.FK_Recipe_TurnStatus">
+      <End Role="TurnStatus" EntitySet="TurnStatus" />
+      <End Role="Recipe" EntitySet="Recipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Services_detail_Services_Head" Association="Self.FK_Services_detail_Services_Head">
+      <End Role="Services_Head" EntitySet="Services_Head" />
+      <End Role="Services_detail" EntitySet="Services_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblUsers_Speciality" Association="Self.FK_TblUsers_Speciality">
+      <End Role="Speciality" EntitySet="Specialities" />
+      <End Role="TblUsers" EntitySet="TblUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblUsers_specialityKind" Association="Self.FK_TblUsers_specialityKind">
+      <End Role="specialityKind" EntitySet="specialityKinds" />
+      <End Role="TblUsers" EntitySet="TblUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblUsers_userKind" Association="Self.FK_TblUsers_userKind">
+      <End Role="userKind" EntitySet="userKinds" />
+      <End Role="TblUsers" EntitySet="TblUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_vacations_TblUsers" Association="Self.FK_vacations_TblUsers">
+      <End Role="TblUsers" EntitySet="TblUsers" />
+      <End Role="vacations" EntitySet="vacations" />
+    </AssociationSet>
+    <FunctionImport Name="CheckDeleteplanvist" ReturnType="Collection(dentistryModel.CheckDeleteplanvist_Result)">
+      <Parameter Name="Planvisit_Code" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CheckDuplicateTurnno" ReturnType="Collection(dentistryModel.CheckDuplicateTurnno_Result)">
+      <Parameter Name="Planvisit_code" Mode="In" Type="Int32" />
+      <Parameter Name="Turnno" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="checkduplicatevacations" ReturnType="Collection(dentistryModel.checkduplicatevacations_Result)">
+      <Parameter Name="doctorscode" Mode="In" Type="Int32" />
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="checkFkvdfamilyRecipe" ReturnType="Collection(dentistryModel.checkFkvdfamilyRecipe_Result)">
+      <Parameter Name="Fkvdfamily" Mode="In" Type="Int32" />
+      <Parameter Name="Personelcode" Mode="In" Type="Int32" />
+      <Parameter Name="code" Mode="In" Type="Int32" />
+      <Parameter Name="turndate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="checkFkvdfamilyRecipe_screen" ReturnType="Collection(dentistryModel.checkFkvdfamilyRecipe_screen_Result)">
+      <Parameter Name="Fkvdfamily" Mode="In" Type="Int32" />
+      <Parameter Name="cdate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Childeren" ReturnType="Collection(dentistryModel.Childeren_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+      <Parameter Name="fromage" Mode="In" Type="Int32" />
+      <Parameter Name="toage" Mode="In" Type="Int32" />
+      <Parameter Name="doctorscode" Mode="In" Type="Int32" />
+      <Parameter Name="zarib" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="consultSelect" ReturnType="Collection(dentistryModel.consultSelect_Result)">
+      <Parameter Name="satrtdate" Mode="In" Type="String" />
+      <Parameter Name="enddate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="consultSelect_persno" ReturnType="Collection(dentistryModel.consultSelect_persno_Result)">
+      <Parameter Name="persno" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Count_pin" ReturnType="Collection(dentistryModel.Count_pin_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="countscreen" ReturnType="Collection(dentistryModel.countscreen_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DoctorsCountPaient" ReturnType="Collection(dentistryModel.DoctorsCountPaient_Result)">
+      <Parameter Name="FTurndate" Mode="In" Type="String" />
+      <Parameter Name="ETurndate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="doctorsname_doctorsWork" ReturnType="Collection(String)">
+      <Parameter Name="doctorscode_name" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="doctorsworks" ReturnType="Collection(dentistryModel.doctorsworks_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+      <Parameter Name="doctorscode" Mode="In" Type="Int32" />
+      <Parameter Name="zarib" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="doctorsworkswithpaientstatus" ReturnType="Collection(dentistryModel.doctorsworkswithpaientstatus_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+      <Parameter Name="paienttype" Mode="In" Type="Int32" />
+      <Parameter Name="zarib" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="doctorsworkswithpaienttype" ReturnType="Collection(dentistryModel.doctorsworkswithpaienttype_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+      <Parameter Name="paienttype" Mode="In" Type="Int32" />
+      <Parameter Name="zarib" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="doctorsworkswithpaienttype3" ReturnType="Collection(dentistryModel.doctorsworkswithpaienttype3_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+      <Parameter Name="paienttype" Mode="In" Type="Int32" />
+      <Parameter Name="zarib" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="doctorsworkswithServices" ReturnType="Collection(dentistryModel.doctorsworkswithServices_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+      <Parameter Name="doctorscode" Mode="In" Type="Int32" />
+      <Parameter Name="servicescode" Mode="In" Type="Int32" />
+      <Parameter Name="zarib" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Doctorsworktime_Datail" ReturnType="Collection(dentistryModel.Doctorsworktime_Datail_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+      <Parameter Name="doctorscode" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="doctorsworktime_Sum" ReturnType="Collection(String)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+      <Parameter Name="doctorscode" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Duplicateineditplanvisit" ReturnType="Collection(dentistryModel.Duplicateineditplanvisit_Result)">
+      <Parameter Name="doctorscode" Mode="In" Type="Int32" />
+      <Parameter Name="visitdate" Mode="In" Type="String" />
+      <Parameter Name="fromtime" Mode="In" Type="Time" />
+      <Parameter Name="totime" Mode="In" Type="Time" />
+      <Parameter Name="kind" Mode="In" Type="Int32" />
+      <Parameter Name="planvisit_Code" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Duplicateinplanvisit" ReturnType="Collection(dentistryModel.Duplicateinplanvisit_Result)">
+      <Parameter Name="doctorscode" Mode="In" Type="Int32" />
+      <Parameter Name="visitdate" Mode="In" Type="String" />
+      <Parameter Name="fromtime" Mode="In" Type="Time" />
+      <Parameter Name="totime" Mode="In" Type="Time" />
+      <Parameter Name="kind" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Form_f16" ReturnType="Collection(dentistryModel.Form_f16_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Form_f16_2" ReturnType="Collection(dentistryModel.Form_f16_2_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GeneralDelete">
+      <Parameter Name="Tables" Mode="In" Type="String" />
+      <Parameter Name="Conditions" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GeneralInsert">
+      <Parameter Name="Tables" Mode="In" Type="String" />
+      <Parameter Name="Conditions" Mode="In" Type="String" />
+      <Parameter Name="Fields" Mode="In" Type="String" />
+      <Parameter Name="Values" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GeneralJoinSelect">
+      <Parameter Name="Tables" Mode="In" Type="String" />
+      <Parameter Name="Conditions" Mode="In" Type="String" />
+      <Parameter Name="Fields" Mode="In" Type="String" />
+      <Parameter Name="JoinTables" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GeneralSelect">
+      <Parameter Name="Tables" Mode="In" Type="String" />
+      <Parameter Name="Conditions" Mode="In" Type="String" />
+      <Parameter Name="Conditions_2" Mode="In" Type="String" />
+      <Parameter Name="Fields" Mode="In" Type="String" />
+      <Parameter Name="AliasFields" Mode="In" Type="String" />
+      <Parameter Name="MainFields" Mode="In" Type="String" />
+      <Parameter Name="JoinTables" Mode="In" Type="String" />
+      <Parameter Name="Code" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GeneralUpdate">
+      <Parameter Name="Tables" Mode="In" Type="String" />
+      <Parameter Name="Values" Mode="In" Type="String" />
+      <Parameter Name="Conditions" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getdate" ReturnType="Collection(DateTime)" />
+    <FunctionImport Name="getfirstscreendate_doctors" ReturnType="Collection(dentistryModel.getfirstscreendate_doctors_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Internal_detailServicesHistory" ReturnType="Collection(dentistryModel.Internal_detailServicesHistory_Result)">
+      <Parameter Name="recipeID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="InternalServicesHistory" ReturnType="Collection(dentistryModel.InternalServicesHistory_Result)">
+      <Parameter Name="Fkvdfamily" Mode="In" Type="Int32" />
+      <Parameter Name="turndate1" Mode="In" Type="String" />
+      <Parameter Name="turndate2" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InternalServicesHistoryfull" ReturnType="Collection(dentistryModel.InternalServicesHistoryfull_Result)">
+      <Parameter Name="Fkvdfamily" Mode="In" Type="Int32" />
+      <Parameter Name="turndate1" Mode="In" Type="String" />
+      <Parameter Name="turndate2" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Introduction_headSelect" ReturnType="Collection(dentistryModel.Introduction_headSelect_Result)">
+      <Parameter Name="satrtdate" Mode="In" Type="String" />
+      <Parameter Name="enddate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="introduction_outcenter" ReturnType="Collection(dentistryModel.introduction_outcenter_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="introduction_outcenterdepartment" ReturnType="Collection(dentistryModel.introduction_outcenterdepartment_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="introduction_services" ReturnType="Collection(dentistryModel.introduction_services_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Introductioncommentprint" ReturnType="Collection(String)">
+      <Parameter Name="introductionCode" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Introductionprint" ReturnType="Collection(dentistryModel.Introductionprint_Result)">
+      <Parameter Name="introductionCode" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="IntroductionSelect_pesno" ReturnType="Collection(dentistryModel.IntroductionSelect_pesno_Result)">
+      <Parameter Name="persno" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="joblocations_count" ReturnType="Collection(dentistryModel.joblocations_count_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+      <Parameter Name="Fk_Company" Mode="In" Type="Int32" />
+      <Parameter Name="Fk_Management" Mode="In" Type="Int32" />
+      <Parameter Name="zarib" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Joblocations_name" ReturnType="Collection(String)">
+      <Parameter Name="Fk_Company2" Mode="In" Type="Int32" />
+      <Parameter Name="Fk_Management2" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Kanal_Count" ReturnType="Collection(dentistryModel.Kanal_Count_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="medicalrestSelect" ReturnType="Collection(dentistryModel.medicalrestSelect_Result)">
+      <Parameter Name="satrtdate" Mode="In" Type="String" />
+      <Parameter Name="enddate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="medicalrestSelect_persno" ReturnType="Collection(dentistryModel.medicalrestSelect_persno_Result)">
+      <Parameter Name="persno" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="paienttypeName_doctorsWork" ReturnType="Collection(String)">
+      <Parameter Name="PaienttypeCodeName" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="paienttypestatus_doctorsWork" ReturnType="Collection(String)">
+      <Parameter Name="PaientstatusCodeName" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="paientwithjoblocations" ReturnType="Collection(dentistryModel.paientwithjoblocations_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+      <Parameter Name="Fk_Company" Mode="In" Type="Int32" />
+      <Parameter Name="Fk_Management" Mode="In" Type="Int32" />
+      <Parameter Name="zarib" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="RecipePrintview" ReturnType="Collection(dentistryModel.RecipePrintview_Result)">
+      <Parameter Name="turnid" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="referrals_Count" ReturnType="Collection(dentistryModel.referrals_Count_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="screen_historical" ReturnType="Collection(dentistryModel.screen_historical_Result)">
+      <Parameter Name="Fkvdfamily" Mode="In" Type="Int32" />
+      <Parameter Name="TypeScreen_code" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Select_niocperson_paientview" ReturnType="Collection(dentistryModel.Select_niocperson_paientview_Result)">
+      <Parameter Name="pk_vdfamily" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectChiefcomplain" ReturnType="Collection(dentistryModel.selectChiefcomplain_Result)">
+      <Parameter Name="fkvdfamily" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectCostConfirm" ReturnType="Collection(dentistryModel.selectCostConfirm_Result)">
+      <Parameter Name="Fkvdfamily" Mode="In" Type="Int32" />
+      <Parameter Name="visitdate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="selectCostConfirm_detail" ReturnType="Collection(dentistryModel.selectCostConfirm_detail_Result)">
+      <Parameter Name="costconfirmHeadCode" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectCostConfirm_head" ReturnType="Collection(dentistryModel.selectCostConfirm_head_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="enddate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="selectCountRecipe" ReturnType="Collection(Int32)">
+      <Parameter Name="Planvisit_code" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectDentalSurgery" ReturnType="Collection(dentistryModel.selectDentalSurgery_Result)">
+      <Parameter Name="fkvdfamily" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectExt_Sx_Comment" ReturnType="Collection(dentistryModel.selectExt_Sx_Comment_Result)">
+      <Parameter Name="fkvdfamily" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectGraphy_comment" ReturnType="Collection(dentistryModel.selectGraphy_comment_Result)">
+      <Parameter Name="fkvdfamily" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectGraphy_needed" ReturnType="Collection(dentistryModel.selectGraphy_needed_Result)">
+      <Parameter Name="fkvdfamily" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectIntroduction_detail" ReturnType="Collection(dentistryModel.selectIntroduction_detail_Result)">
+      <Parameter Name="IntroductionHeadCode" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectOther" ReturnType="Collection(dentistryModel.selectOther_Result)">
+      <Parameter Name="fkvdfamily" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectOther_Comment" ReturnType="Collection(dentistryModel.selectOther_Comment_Result)">
+      <Parameter Name="fkvdfamily" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectPaientList" ReturnType="Collection(dentistryModel.selectPaientList_Result)">
+      <Parameter Name="DoctorsCode" Mode="In" Type="Int32" />
+      <Parameter Name="Turndate" Mode="In" Type="String" />
+      <Parameter Name="turnstatus" Mode="In" Type="Byte" />
+      <Parameter Name="kind" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="selectPaientList_" ReturnType="Collection(dentistryModel.selectPaientList__Result)">
+      <Parameter Name="DoctorsCode" Mode="In" Type="Int32" />
+      <Parameter Name="Turndate" Mode="In" Type="String" />
+      <Parameter Name="turnstatus" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="selectPaientList_turnstatus" ReturnType="Collection(dentistryModel.selectPaientList_turnstatus_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+      <Parameter Name="turnstatus" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="selectPerio_tx_Comment" ReturnType="Collection(dentistryModel.selectPerio_tx_Comment_Result)">
+      <Parameter Name="fkvdfamily" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectPerioTx" ReturnType="Collection(dentistryModel.selectPerioTx_Result)">
+      <Parameter Name="fkvdfamily" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SelectPersonTbl">
+      <Parameter Name="persno" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SelectPersonTblvdfamily" ReturnType="Collection(dentistryModel.SelectPersonTblvdfamily_Result)">
+      <Parameter Name="pkvdfamily" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="selectPlanvisit" ReturnType="Collection(dentistryModel.selectPlanvisit_Result)">
+      <Parameter Name="visitdate" Mode="In" Type="String" />
+      <Parameter Name="Shiftcode" Mode="In" Type="Int32" />
+      <Parameter Name="kind" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="selectPlanvisit_" ReturnType="Collection(dentistryModel.selectPlanvisit__Result)">
+      <Parameter Name="visitdate" Mode="In" Type="String" />
+      <Parameter Name="Shiftcode" Mode="In" Type="Int32" />
+      <Parameter Name="kind" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="selectRCT" ReturnType="Collection(dentistryModel.selectRCT_Result)">
+      <Parameter Name="fkvdfamily" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectRCT_Comment" ReturnType="Collection(dentistryModel.selectRCT_Comment_Result)">
+      <Parameter Name="fkvdfamily" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectrecipe_webscreen" ReturnType="Collection(dentistryModel.selectrecipe_webscreen_Result)">
+      <Parameter Name="Fkvdfamily" Mode="In" Type="Int32" />
+      <Parameter Name="cdate" Mode="In" Type="String" />
+      <Parameter Name="kind" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectRecipeError" ReturnType="Collection(dentistryModel.selectRecipeError_Result)">
+      <Parameter Name="Fkvdfamily" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectRestorative" ReturnType="Collection(dentistryModel.selectRestorative_Result)">
+      <Parameter Name="fkvdfamily" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectRestorativeTx_Comment" ReturnType="Collection(dentistryModel.selectRestorativeTx_Comment_Result)">
+      <Parameter Name="fkvdfamily" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectTurnno" ReturnType="Collection(Byte)">
+      <Parameter Name="Planvisit_code" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectTurnno_screen" ReturnType="Collection(Byte)">
+      <Parameter Name="Planvisit_code" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ServicesHistory" ReturnType="Collection(dentistryModel.ServicesHistory_Result)">
+      <Parameter Name="Fkvdfamily" Mode="In" Type="Int32" />
+      <Parameter Name="visitdate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="servicesname_doctorsWork" ReturnType="Collection(String)">
+      <Parameter Name="Services_detail_Code" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_miladitoshamsi" ReturnType="Collection(String)">
+      <Parameter Name="miladidate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_shamsitomiladi" ReturnType="Collection(DateTime)">
+      <Parameter Name="shamsidate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="turnNo_screenView" ReturnType="Collection(dentistryModel.turnNo_screenView_Result)">
+      <Parameter Name="Fkvdfamily" Mode="In" Type="Int32" />
+      <Parameter Name="cdate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="vacationinplanvisit" ReturnType="Collection(dentistryModel.vacationinplanvisit_Result)">
+      <Parameter Name="doctorscode" Mode="In" Type="Int32" />
+      <Parameter Name="visitdate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="web_screen_select" ReturnType="Collection(dentistryModel.web_screen_select_Result)">
+      <Parameter Name="NationalCode" Mode="In" Type="String" />
+      <Parameter Name="PersNo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="XML_5" ReturnType="Collection(dentistryModel.XML_5_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="String" />
+      <Parameter Name="todate" Mode="In" Type="String" />
+      <Parameter Name="zarib" Mode="In" Type="Int32" />
+      <Parameter Name="kind" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Refers" EntityType="dentistryModel.Refer" />
+    <EntitySet Name="Refer_status" EntityType="dentistryModel.Refer_status" />
+    <EntitySet Name="Refer_status_desc" EntityType="dentistryModel.Refer_status_desc" />
+    <EntitySet Name="Screen_count" EntityType="dentistryModel.Screen_count" />
+    <EntitySet Name="TblCompanies" EntityType="dentistryModel.TblCompany" />
+    <EntitySet Name="TblManagements" EntityType="dentistryModel.TblManagement" />
+    <EntitySet Name="TblMaritalStatus" EntityType="dentistryModel.TblMaritalStatu" />
+    <EntitySet Name="TblRelations" EntityType="dentistryModel.TblRelation" />
+    <EntitySet Name="TblSubCompanies" EntityType="dentistryModel.TblSubCompany" />
+    <EntitySet Name="TblValidCenters" EntityType="dentistryModel.TblValidCenter" />
+    <EntitySet Name="TblValidCenterCities" EntityType="dentistryModel.TblValidCenterCity" />
+    <EntitySet Name="TblValidCenterZones" EntityType="dentistryModel.TblValidCenterZone" />
+    <EntitySet Name="JobLocations" EntityType="dentistryModel.JobLocation" />
+    <EntitySet Name="Tbl_ValidCenterZone" EntityType="dentistryModel.Tbl_ValidCenterZone" />
+    <EntitySet Name="names" EntityType="dentistryModel.name" />
+    <EntitySet Name="Radio_Services_request_Detail" EntityType="dentistryModel.Radio_Services_request_Detail" />
+    <EntitySet Name="TblEmployeetypes" EntityType="dentistryModel.TblEmployeetype" />
+    <EntitySet Name="NiocPersons" EntityType="dentistryModel.NiocPerson" />
+    <EntitySet Name="EmployeeInfoTbls" EntityType="dentistryModel.EmployeeInfoTbl" />
+    <EntitySet Name="PersonTbls" EntityType="dentistryModel.PersonTbl" />
+    <EntitySet Name="Radio_Services_request" EntityType="dentistryModel.Radio_Services_request" />
+    <EntitySet Name="IllnessHistories" EntityType="dentistryModel.IllnessHistory" />
+    <EntitySet Name="familydentist_view" EntityType="dentistryModel.familydentist_view" />
+    <EntitySet Name="Services_Group_report" EntityType="dentistryModel.Services_Group_report" />
+    <EntitySet Name="tariffs" EntityType="dentistryModel.tariff" />
+    <EntitySet Name="full_niocperson" EntityType="dentistryModel.full_niocperson" />
+    <EntitySet Name="Dent_Tooth" EntityType="dentistryModel.Dent_Tooth" />
+    <EntitySet Name="dent_screen2" EntityType="dentistryModel.dent_screen2" />
+    <EntitySet Name="Event_report" EntityType="dentistryModel.Event_report" />
+  </EntityContainer>
+  <ComplexType Name="CheckDeleteplanvist_Result">
+    <Property Type="Int64" Name="Turnid" Nullable="false" />
+    <Property Type="String" Name="IDPerson" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="persno" Nullable="true" />
+    <Property Type="String" Name="Personelcode" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Fkvdfamily" Nullable="true" />
+    <Property Type="String" Name="Currentdate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="currentTime" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Turndate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Turntime" Nullable="true" MaxLength="10" />
+    <Property Type="Byte" Name="turnNo" Nullable="true" />
+    <Property Type="Int32" Name="DoctorsCode" Nullable="true" />
+    <Property Type="Int32" Name="Planvisit_code" Nullable="true" />
+    <Property Type="Byte" Name="Servicescode" Nullable="true" />
+    <Property Type="Byte" Name="TurnStatus" Nullable="true" />
+    <Property Type="Byte" Name="Shiftcode" Nullable="true" />
+    <Property Type="Byte" Name="ToothID_old" Nullable="true" />
+    <Property Type="Byte" Name="PaientType" Nullable="true" />
+    <Property Type="Byte" Name="PaientStatus" Nullable="true" />
+    <Property Type="Int32" Name="Usercode" Nullable="true" />
+    <Property Type="Byte" Name="recipekind" Nullable="true" />
+    <Property Type="String" Name="ipadress" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="validcenterzone" Nullable="true" />
+    <Property Type="Byte" Name="TOOTHID" Nullable="true" />
+    <Property Type="Int32" Name="relationorderno" Nullable="true" />
+    <Property Type="Byte" Name="turnstatusold" Nullable="true" />
+    <Property Type="Int32" Name="specialityKindCode" Nullable="true" />
+    <Property Type="Int32" Name="age" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="CheckDuplicateTurnno_Result">
+    <Property Type="Int64" Name="Turnid" Nullable="false" />
+    <Property Type="String" Name="IDPerson" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="persno" Nullable="true" />
+    <Property Type="String" Name="Personelcode" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Fkvdfamily" Nullable="true" />
+    <Property Type="String" Name="Currentdate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="currentTime" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Turndate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Turntime" Nullable="true" MaxLength="10" />
+    <Property Type="Byte" Name="turnNo" Nullable="true" />
+    <Property Type="Int32" Name="DoctorsCode" Nullable="true" />
+    <Property Type="Int32" Name="Planvisit_code" Nullable="true" />
+    <Property Type="Byte" Name="Servicescode" Nullable="true" />
+    <Property Type="Byte" Name="TurnStatus" Nullable="true" />
+    <Property Type="Byte" Name="Shiftcode" Nullable="true" />
+    <Property Type="Byte" Name="ToothID_old" Nullable="true" />
+    <Property Type="Byte" Name="PaientType" Nullable="true" />
+    <Property Type="Byte" Name="PaientStatus" Nullable="true" />
+    <Property Type="Int32" Name="Usercode" Nullable="true" />
+    <Property Type="Byte" Name="recipekind" Nullable="true" />
+    <Property Type="String" Name="ipadress" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="validcenterzone" Nullable="true" />
+    <Property Type="Byte" Name="TOOTHID" Nullable="true" />
+    <Property Type="Int32" Name="relationorderno" Nullable="true" />
+    <Property Type="Byte" Name="turnstatusold" Nullable="true" />
+    <Property Type="Int32" Name="specialityKindCode" Nullable="true" />
+    <Property Type="Int32" Name="age" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="checkduplicatevacations_Result">
+    <Property Type="Int32" Name="vacationsCode" Nullable="false" />
+    <Property Type="Int32" Name="Doctorscode" Nullable="true" />
+    <Property Type="String" Name="vacationType" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="fromDate" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="fromDate_Eng" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Todate" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="Todate_Eng" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="usercode" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="checkFkvdfamilyRecipe_Result">
+    <Property Type="Int64" Name="Turnid" Nullable="false" />
+    <Property Type="Byte" Name="turnNo" Nullable="true" />
+    <Property Type="String" Name="Turndate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="101" />
+  </ComplexType>
+  <ComplexType Name="checkFkvdfamilyRecipe_screen_Result">
+    <Property Type="Int64" Name="Turnid" Nullable="false" />
+    <Property Type="Byte" Name="turnNo" Nullable="true" />
+    <Property Type="String" Name="Turndate" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="DoctorsCode" Nullable="true" />
+    <Property Type="Int32" Name="Planvisit_code" Nullable="true" />
+    <Property Type="Int32" Name="planvisit_Code1" Nullable="true" />
+    <Property Type="Int32" Name="Doctorscode1" Nullable="true" />
+    <Property Type="Byte" Name="Cliniccode" Nullable="true" />
+    <Property Type="Byte" Name="Capacity" Nullable="true" />
+    <Property Type="String" Name="Fromdate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="todate" Nullable="true" MaxLength="10" />
+    <Property Type="Byte" Name="Shiftcode" Nullable="true" />
+    <Property Type="Time" Name="Fromtime" Nullable="true" />
+    <Property Type="Time" Name="totime" Nullable="true" />
+    <Property Type="Byte" Name="intervaltime" Nullable="true" />
+    <Property Type="Int32" Name="usercode" Nullable="true" />
+    <Property Type="DateTime" Name="insertdate" Nullable="true" />
+    <Property Type="Time" Name="inserttime" Nullable="true" />
+    <Property Type="Boolean" Name="status" Nullable="true" />
+    <Property Type="Byte" Name="kind" Nullable="true" />
+    <Property Type="Byte" Name="InternetCapacity" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Childeren_Result">
+    <Property Type="String" Name="name" Nullable="true" MaxLength="101" />
+    <Property Type="Int32" Name="PersNo" Nullable="true" />
+    <Property Type="String" Name="BirthDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="106" />
+    <Property Type="String" Name="Turndate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Services_detail_Name" Nullable="true" MaxLength="200" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+    <Property Type="Double" Name="K_NO" Nullable="true" />
+    <Property Type="Double" Name="hazineh" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="consultSelect_Result">
+    <Property Type="Int32" Name="consultCode" Nullable="false" />
+    <Property Type="Int32" Name="Persno" Nullable="true" />
+    <Property Type="String" Name="paientname" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="Recipe_Desc" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+    <Property Type="String" Name="ConsultDoctorsname" Nullable="true" MaxLength="112" />
+    <Property Type="String" Name="introductionDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="introductionTime" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Fkvdfamily" Nullable="true" />
+    <Property Type="Int32" Name="Doctorscode" Nullable="true" />
+    <Property Type="Int32" Name="ConsultDoctors" Nullable="true" />
+    <Property Type="Int32" Name="Icd10code" Nullable="true" />
+    <Property Type="Int32" Name="Servicescode" Nullable="true" />
+    <Property Type="Byte" Name="ToothID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="consultSelect_persno_Result">
+    <Property Type="Int32" Name="consultCode" Nullable="false" />
+    <Property Type="Int32" Name="Persno" Nullable="true" />
+    <Property Type="String" Name="paientname" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="Recipe_Desc" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+    <Property Type="String" Name="ConsultDoctorsname" Nullable="true" MaxLength="112" />
+    <Property Type="String" Name="introductionDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="introductionTime" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Fkvdfamily" Nullable="true" />
+    <Property Type="Int32" Name="Doctorscode" Nullable="true" />
+    <Property Type="Int32" Name="ConsultDoctors" Nullable="true" />
+    <Property Type="Int32" Name="Icd10code" Nullable="true" />
+    <Property Type="Int32" Name="Servicescode" Nullable="true" />
+    <Property Type="Byte" Name="ToothID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Count_pin_Result">
+    <Property Type="String" Name="empdesc" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="pinaj_no" Nullable="true" />
+    <Property Type="Int32" Name="Pinkanal_NO" Nullable="true" />
+    <Property Type="Int32" Name="Pinamalgam_NO" Nullable="true" />
+    <Property Type="Int32" Name="Pinkampozit_NO" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="countscreen_Result">
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="106" />
+    <Property Type="Int32" Name="t" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="DoctorsCountPaient_Result">
+    <Property Type="String" Name="نام_پزشک" Nullable="true" MaxLength="112" />
+    <Property Type="String" Name="تاریخ_ویزیت" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="وضعیت_نوبت" Nullable="true" MaxLength="25" />
+    <Property Type="Int32" Name="تعداد" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="doctorsworks_Result">
+    <Property Type="String" Name="name" Nullable="true" MaxLength="101" />
+    <Property Type="Int32" Name="PersNo" Nullable="true" />
+    <Property Type="String" Name="companyname" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="Turndate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Services_detail_Name" Nullable="true" MaxLength="200" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+    <Property Type="Double" Name="K_NO" Nullable="true" />
+    <Property Type="Double" Name="hazineh" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="doctorsworkswithpaientstatus_Result">
+    <Property Type="String" Name="name" Nullable="true" MaxLength="101" />
+    <Property Type="Int32" Name="PersNo" Nullable="true" />
+    <Property Type="String" Name="companyname" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="Turndate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Services_detail_Name" Nullable="true" MaxLength="200" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+    <Property Type="Double" Name="Column1" Nullable="true" />
+    <Property Type="Double" Name="hazineh" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="doctorsworkswithpaienttype_Result">
+    <Property Type="String" Name="name" Nullable="true" MaxLength="101" />
+    <Property Type="Int32" Name="PersNo" Nullable="true" />
+    <Property Type="String" Name="companyname" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="Turndate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Services_detail_Name" Nullable="true" MaxLength="200" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+    <Property Type="Double" Name="Column1" Nullable="true" />
+    <Property Type="Double" Name="hazineh" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="doctorsworkswithpaienttype3_Result">
+    <Property Type="String" Name="name" Nullable="true" MaxLength="101" />
+    <Property Type="Int32" Name="PersNo" Nullable="true" />
+    <Property Type="String" Name="companyname" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="Turndate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Services_detail_Name" Nullable="true" MaxLength="200" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+    <Property Type="Double" Name="Column1" Nullable="true" />
+    <Property Type="Double" Name="hazineh" Nullable="true" />
+    <Property Type="String" Name="ValidCenterZoneDesc" Nullable="true" MaxLength="70" />
+  </ComplexType>
+  <ComplexType Name="doctorsworkswithServices_Result">
+    <Property Type="String" Name="name" Nullable="true" MaxLength="101" />
+    <Property Type="Int32" Name="PersNo" Nullable="true" />
+    <Property Type="String" Name="companyname" Nullable="true" MaxLength="80" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+    <Property Type="String" Name="Turndate" Nullable="true" MaxLength="10" />
+    <Property Type="Double" Name="Column1" Nullable="true" />
+    <Property Type="Double" Name="hazineh" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Doctorsworktime_Datail_Result">
+    <Property Type="String" Name="workdate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Column1" Nullable="true" MaxLength="61" />
+    <Property Type="Time" Name="timeFrom" Nullable="true" />
+    <Property Type="Time" Name="timeTo" Nullable="true" />
+    <Property Type="String" Name="Shiftname" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="Duplicateineditplanvisit_Result">
+    <Property Type="Int32" Name="planvisit_Code" Nullable="false" />
+    <Property Type="Int32" Name="Doctorscode" Nullable="true" />
+    <Property Type="Byte" Name="Cliniccode" Nullable="true" />
+    <Property Type="Byte" Name="Capacity" Nullable="true" />
+    <Property Type="String" Name="Fromdate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="todate" Nullable="true" MaxLength="10" />
+    <Property Type="Byte" Name="Shiftcode" Nullable="true" />
+    <Property Type="Time" Name="Fromtime" Nullable="true" />
+    <Property Type="Time" Name="totime" Nullable="true" />
+    <Property Type="Byte" Name="intervaltime" Nullable="true" />
+    <Property Type="Int32" Name="usercode" Nullable="true" />
+    <Property Type="DateTime" Name="insertdate" Nullable="true" />
+    <Property Type="Time" Name="inserttime" Nullable="true" />
+    <Property Type="Boolean" Name="status" Nullable="true" />
+    <Property Type="Byte" Name="kind" Nullable="true" />
+    <Property Type="Byte" Name="InternetCapacity" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Duplicateinplanvisit_Result">
+    <Property Type="Int32" Name="planvisit_Code" Nullable="false" />
+    <Property Type="Int32" Name="Doctorscode" Nullable="true" />
+    <Property Type="Byte" Name="Cliniccode" Nullable="true" />
+    <Property Type="Byte" Name="Capacity" Nullable="true" />
+    <Property Type="String" Name="Fromdate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="todate" Nullable="true" MaxLength="10" />
+    <Property Type="Byte" Name="Shiftcode" Nullable="true" />
+    <Property Type="Time" Name="Fromtime" Nullable="true" />
+    <Property Type="Time" Name="totime" Nullable="true" />
+    <Property Type="Byte" Name="intervaltime" Nullable="true" />
+    <Property Type="Int32" Name="usercode" Nullable="true" />
+    <Property Type="DateTime" Name="insertdate" Nullable="true" />
+    <Property Type="Time" Name="inserttime" Nullable="true" />
+    <Property Type="Boolean" Name="status" Nullable="true" />
+    <Property Type="Byte" Name="kind" Nullable="true" />
+    <Property Type="Byte" Name="InternetCapacity" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Form_f16_Result">
+    <Property Type="String" Name="ServiceTypeF16Name" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="empdesc" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="tedadm" Nullable="true" />
+    <Property Type="Double" Name="k" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Form_f16_2_Result">
+    <Property Type="String" Name="ServiceTypeF16Name" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="tedadm" Nullable="true" />
+    <Property Type="Double" Name="k" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getfirstscreendate_doctors_Result">
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+    <Property Type="Int32" Name="doctorscode" Nullable="true" />
+    <Property Type="Int32" Name="planvisit_Code" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Internal_detailServicesHistory_Result">
+    <Property Type="String" Name="Services_detail_Name" Nullable="true" MaxLength="200" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="InternalServicesHistory_Result">
+    <Property Type="String" Name="turndate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+    <Property Type="Byte" Name="turnNo" Nullable="true" />
+    <Property Type="String" Name="Turntime" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="TurnStatusName" Nullable="true" MaxLength="25" />
+    <Property Type="Int64" Name="turnid" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="InternalServicesHistoryfull_Result">
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+    <Property Type="String" Name="turndate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Services_detail_Name" Nullable="true" MaxLength="200" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+    <Property Type="Double" Name="K_NO" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Introduction_headSelect_Result">
+    <Property Type="Int64" Name="introductionCode" Nullable="false" />
+    <Property Type="Int32" Name="Persno" Nullable="true" />
+    <Property Type="String" Name="personalcode" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="NesbatDesc" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="IntroductionKind" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="outcenterName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="departmentDesc" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="introductionDate" Nullable="true" MaxLength="10" />
+    <Property Type="Time" Name="introductionTime" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="introduction_outcenter_Result">
+    <Property Type="String" Name="outcenterName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="empdesc" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="tedad" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="introduction_outcenterdepartment_Result">
+    <Property Type="String" Name="departmentDesc" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="empdesc" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="tedad" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="introduction_services_Result">
+    <Property Type="String" Name="Servicename" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="empdesc" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="tedad" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Introductionprint_Result">
+    <Property Type="Int64" Name="introductionCode" Nullable="false" />
+    <Property Type="Int32" Name="Persno" Nullable="true" />
+    <Property Type="String" Name="personalcode" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="102" />
+    <Property Type="String" Name="NesbatDesc" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="IntroductionKind" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="outcentername" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+    <Property Type="String" Name="introductionDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="adress" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="phone" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="companyname" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="ValidCenterZoneDesc" Nullable="true" MaxLength="70" />
+  </ComplexType>
+  <ComplexType Name="IntroductionSelect_pesno_Result">
+    <Property Type="Int64" Name="introductionCode" Nullable="false" />
+    <Property Type="Int32" Name="Persno" Nullable="true" />
+    <Property Type="String" Name="personalcode" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="NesbatDesc" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="IntroductionKind" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="outcenterName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="departmentDesc" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="introductionDate" Nullable="true" MaxLength="10" />
+    <Property Type="Time" Name="introductionTime" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="joblocations_count_Result">
+    <Property Type="String" Name="kind" Nullable="false" MaxLength="7" />
+    <Property Type="Int32" Name="tedad" Nullable="true" />
+    <Property Type="Double" Name="hazineh" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Kanal_Count_Result">
+    <Property Type="Byte" Name="Kanal_NO" Nullable="true" />
+    <Property Type="String" Name="empdesc" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="PaientCount" Nullable="true" />
+    <Property Type="Int32" Name="KanalCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="medicalrestSelect_Result">
+    <Property Type="Int32" Name="medicalrestCode" Nullable="false" />
+    <Property Type="Int32" Name="Persno" Nullable="true" />
+    <Property Type="String" Name="paientname" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="Firstrestdate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Endrestdate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Returnworkdate" Nullable="true" MaxLength="10" />
+    <Property Type="Byte" Name="Countofrest" Nullable="true" />
+    <Property Type="String" Name="DOCTORSNAME" Nullable="true" MaxLength="112" />
+    <Property Type="String" Name="currentdate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Currenttime" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="comment" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="Fkvdfamily" Nullable="true" />
+    <Property Type="Int32" Name="Doctorscode" Nullable="true" />
+    <Property Type="Int32" Name="icd10code" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="medicalrestSelect_persno_Result">
+    <Property Type="Int32" Name="medicalrestCode" Nullable="false" />
+    <Property Type="Int32" Name="Persno" Nullable="true" />
+    <Property Type="String" Name="paientname" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="Firstrestdate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Endrestdate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Returnworkdate" Nullable="true" MaxLength="10" />
+    <Property Type="Byte" Name="Countofrest" Nullable="true" />
+    <Property Type="String" Name="DOCTORSNAME" Nullable="true" MaxLength="112" />
+    <Property Type="String" Name="currentdate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Currenttime" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="comment" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="Fkvdfamily" Nullable="true" />
+    <Property Type="Int32" Name="Doctorscode" Nullable="true" />
+    <Property Type="Int32" Name="icd10code" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="paientwithjoblocations_Result">
+    <Property Type="String" Name="name" Nullable="true" MaxLength="101" />
+    <Property Type="Int32" Name="PersNo" Nullable="true" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="Turndate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Services_detail_Name" Nullable="true" MaxLength="200" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+    <Property Type="Double" Name="Column1" Nullable="true" />
+    <Property Type="Double" Name="hazineh" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="RecipePrintview_Result">
+    <Property Type="Int64" Name="Turnid" Nullable="false" />
+    <Property Type="Int32" Name="persno" Nullable="true" />
+    <Property Type="String" Name="Personelcode" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Currentdate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="currentTime" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Turndate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Turntime" Nullable="true" MaxLength="10" />
+    <Property Type="Byte" Name="turnNo" Nullable="true" />
+    <Property Type="String" Name="fullname2" Nullable="true" MaxLength="135" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+    <Property Type="String" Name="Recipe_Desc" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PaientTypeName" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="joblocations" Nullable="true" MaxLength="147" />
+    <Property Type="String" Name="lname" Nullable="true" MaxLength="50" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="referrals_Count_Result">
+    <Property Type="String" Name="Turndate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="empdesc" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="tedad2" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="screen_historical_Result">
+    <Property Type="Int64" Name="doctorsServicecode" Nullable="false" />
+    <Property Type="String" Name="Insertdate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Services_detail_Name" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="Select_niocperson_paientview_Result">
+    <Property Type="Int32" Name="PersNo" Nullable="true" />
+    <Property Type="String" Name="fullname" Nullable="true" MaxLength="102" />
+    <Property Type="String" Name="fullname2" Nullable="true" MaxLength="135" />
+    <Property Type="String" Name="NesbatDesc" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="companyname" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="Managementname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BirthDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="ValidCenterZoneDesc" Nullable="true" MaxLength="70" />
+    <Property Type="String" Name="ValidCenterDesc" Nullable="true" MaxLength="70" />
+    <Property Type="Int32" Name="IdEmployeeType" Nullable="true" />
+    <Property Type="Int32" Name="Fk_Management" Nullable="true" />
+    <Property Type="Guid" Name="IDPerson" Nullable="true" />
+    <Property Type="Int32" Name="RelationOrderNo" Nullable="true" />
+    <Property Type="Int32" Name="Pk_vdfamily" Nullable="false" />
+    <Property Type="Byte" Name="Fk_Nesbat" Nullable="true" />
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="Int32" Name="Pk_ValidCenterZone" Nullable="true" />
+    <Property Type="String" Name="telephon" Nullable="true" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="selectChiefcomplain_Result">
+    <Property Type="Int32" Name="pk_dent_Screen2" Nullable="false" />
+    <Property Type="String" Name="FirstScreenDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="cheifcomplain" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+  </ComplexType>
+  <ComplexType Name="selectCostConfirm_Result">
+    <Property Type="Int64" Name="costconfirmCode" Nullable="false" />
+    <Property Type="String" Name="Services_detail_Name" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="ToothName" Nullable="true" MaxLength="5" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="selectCostConfirm_detail_Result">
+    <Property Type="Int64" Name="costconfirmDetailCode" Nullable="false" />
+    <Property Type="String" Name="Services_detail_Name" Nullable="true" MaxLength="200" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="selectCostConfirm_head_Result">
+    <Property Type="Int64" Name="costconfirmCode" Nullable="false" />
+    <Property Type="Int32" Name="Persno" Nullable="true" />
+    <Property Type="String" Name="VisitDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Doctorsoutname" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Confirmdate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Confirmtime" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+  </ComplexType>
+  <ComplexType Name="selectDentalSurgery_Result">
+    <Property Type="Int32" Name="pk_dent_Screen1" Nullable="false" />
+    <Property Type="String" Name="SpecificationDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="DentalSurgeryComment" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="ExtractionComment" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="dent_neededServicedesc" Nullable="true" MaxLength="50" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="selectExt_Sx_Comment_Result">
+    <Property Type="Int32" Name="pk_dent_Screen2" Nullable="false" />
+    <Property Type="String" Name="FirstScreenDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="DentalSurgeryComment" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="ExtractionComment" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+  </ComplexType>
+  <ComplexType Name="selectGraphy_comment_Result">
+    <Property Type="Int32" Name="pk_dent_Screen2" Nullable="false" />
+    <Property Type="String" Name="FirstScreenDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="PaComment" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="OtherRadioGraphyComment" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="OCCLComment" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+  </ComplexType>
+  <ComplexType Name="selectGraphy_needed_Result">
+    <Property Type="Int32" Name="pk_dent_Screen1" Nullable="false" />
+    <Property Type="String" Name="SpecificationDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="PAComment" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="dent_neededServicedesc" Nullable="true" MaxLength="50" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+    <Property Type="Int32" Name="fk_dent_neededService" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="selectIntroduction_detail_Result">
+    <Property Type="Int64" Name="IntroductionDetailCode" Nullable="false" />
+    <Property Type="String" Name="Servicename" Nullable="true" MaxLength="150" />
+    <Property Type="Binary" Name="ToothImage1" Nullable="true" MaxLength="Max" />
+    <Property Type="Binary" Name="ToothImage2" Nullable="true" MaxLength="Max" />
+    <Property Type="Binary" Name="ToothImage3" Nullable="true" MaxLength="Max" />
+    <Property Type="Binary" Name="ToothImage4" Nullable="true" MaxLength="Max" />
+    <Property Type="Binary" Name="ToothImage5" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="selectOther_Result">
+    <Property Type="Int32" Name="pk_dent_Screen1" Nullable="false" />
+    <Property Type="String" Name="SpecificationDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="OtherFindingComment" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="dent_neededServicedesc" Nullable="true" MaxLength="50" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+    <Property Type="Int32" Name="fk_dent_neededService" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="selectOther_Comment_Result">
+    <Property Type="Int32" Name="pk_dent_Screen2" Nullable="false" />
+    <Property Type="String" Name="FirstScreenDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="EmergenyTxComment" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="OrupPathoComment" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="OtherFindingComment" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+  </ComplexType>
+  <ComplexType Name="selectPaientList_Result">
+    <Property Type="Int64" Name="Turnid" Nullable="false" />
+    <Property Type="Byte" Name="turnno" Nullable="true" />
+    <Property Type="String" Name="turntime" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="persno" Nullable="true" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="NesbatDesc" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="kindtext" Nullable="true" MaxLength="6" />
+    <Property Type="String" Name="PaientTypeName" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="Recipe_Desc" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TurnStatusName" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="telephon" Nullable="true" MaxLength="40" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+    <Property Type="Int32" Name="fkvdfamily" Nullable="true" />
+    <Property Type="Int32" Name="Planvisit_code" Nullable="true" />
+    <Property Type="String" Name="idperson" Nullable="true" MaxLength="50" />
+    <Property Type="Byte" Name="turnstatus" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="selectPaientList__Result">
+    <Property Type="Int64" Name="Turnid" Nullable="false" />
+    <Property Type="Byte" Name="turnno" Nullable="true" />
+    <Property Type="String" Name="turntime" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="persno" Nullable="true" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="NesbatDesc" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="PaientTypeName" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="Recipe_Desc" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TurnStatusName" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="telephon" Nullable="true" MaxLength="40" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+    <Property Type="Int32" Name="fkvdfamily" Nullable="true" />
+    <Property Type="Int32" Name="Planvisit_code" Nullable="true" />
+    <Property Type="String" Name="idperson" Nullable="true" MaxLength="50" />
+    <Property Type="Byte" Name="turnstatus" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="selectPaientList_turnstatus_Result">
+    <Property Type="String" Name="turndate" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="persno" Nullable="true" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="NesbatDesc" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="PaientTypeName" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+    <Property Type="String" Name="telephon" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="TurnStatusName" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="ManagementDesc" Nullable="true" MaxLength="80" />
+  </ComplexType>
+  <ComplexType Name="selectPerio_tx_Comment_Result">
+    <Property Type="Int32" Name="pk_dent_Screen2" Nullable="false" />
+    <Property Type="String" Name="FirstScreenDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="PerioSxComment" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="CurettageComment" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="ClComment" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+  </ComplexType>
+  <ComplexType Name="selectPerioTx_Result">
+    <Property Type="Int32" Name="pk_dent_Screen1" Nullable="false" />
+    <Property Type="String" Name="SpecificationDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="CLComment" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="dent_neededServicedesc" Nullable="true" MaxLength="50" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+    <Property Type="Int32" Name="fk_dent_neededService" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SelectPersonTblvdfamily_Result">
+    <Property Type="Int32" Name="PersNo" Nullable="true" />
+    <Property Type="String" Name="fullname" Nullable="true" MaxLength="102" />
+    <Property Type="String" Name="fullname2" Nullable="true" MaxLength="135" />
+    <Property Type="String" Name="NesbatDesc" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="companyname" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="Managementname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BirthDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="ValidCenterZoneDesc" Nullable="true" MaxLength="70" />
+    <Property Type="String" Name="ValidCenterDesc" Nullable="true" MaxLength="70" />
+    <Property Type="Int32" Name="IdEmployeeType" Nullable="true" />
+    <Property Type="Int32" Name="Fk_Management" Nullable="true" />
+    <Property Type="Guid" Name="IDPerson" Nullable="true" />
+    <Property Type="Int32" Name="RelationOrderNo" Nullable="true" />
+    <Property Type="Int32" Name="Pk_vdfamily" Nullable="false" />
+    <Property Type="Byte" Name="Fk_Nesbat" Nullable="true" />
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="Int32" Name="Pk_ValidCenterZone" Nullable="true" />
+    <Property Type="String" Name="telephon" Nullable="true" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="selectPlanvisit_Result">
+    <Property Type="Int32" Name="planvisit_Code" Nullable="false" />
+    <Property Type="String" Name="ClinicName" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="114" />
+    <Property Type="String" Name="kindtext" Nullable="true" MaxLength="6" />
+    <Property Type="String" Name="fromdate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Shiftname" Nullable="true" MaxLength="10" />
+    <Property Type="Byte" Name="capacity" Nullable="true" />
+    <Property Type="Int32" Name="tedad" Nullable="false" />
+    <Property Type="Byte" Name="Shiftcode" Nullable="true" />
+    <Property Type="Int32" Name="doctorscode" Nullable="true" />
+    <Property Type="DateTime" Name="miladidate" Nullable="true" />
+    <Property Type="Byte" Name="intervaltime" Nullable="true" />
+    <Property Type="Time" Name="Fromtime" Nullable="true" />
+    <Property Type="Byte" Name="kind" Nullable="true" />
+    <Property Type="Byte" Name="specialityKindCode" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="selectPlanvisit__Result">
+    <Property Type="Int32" Name="planvisit_Code" Nullable="false" />
+    <Property Type="String" Name="ClinicName" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="114" />
+    <Property Type="String" Name="kindtext" Nullable="true" MaxLength="6" />
+    <Property Type="String" Name="fromdate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Shiftname" Nullable="true" MaxLength="10" />
+    <Property Type="Byte" Name="capacity" Nullable="true" />
+    <Property Type="Int32" Name="tedad" Nullable="false" />
+    <Property Type="Byte" Name="Shiftcode" Nullable="true" />
+    <Property Type="Int32" Name="doctorscode" Nullable="true" />
+    <Property Type="DateTime" Name="miladidate" Nullable="true" />
+    <Property Type="Byte" Name="intervaltime" Nullable="true" />
+    <Property Type="Time" Name="Fromtime" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="selectRCT_Result">
+    <Property Type="Int32" Name="pk_dent_Screen1" Nullable="false" />
+    <Property Type="String" Name="SpecificationDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="RctComment2" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="dent_neededServicedesc" Nullable="true" MaxLength="50" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="selectRCT_Comment_Result">
+    <Property Type="Int32" Name="pk_dent_Screen2" Nullable="false" />
+    <Property Type="String" Name="FirstScreenDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="RCTComment" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+  </ComplexType>
+  <ComplexType Name="selectrecipe_webscreen_Result">
+    <Property Type="Int64" Name="Turnid" Nullable="false" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+    <Property Type="String" Name="Turndate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Turntime" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Recipe_Desc" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="selectRecipeError_Result">
+    <Property Type="Int32" Name="pk_RecipeError" Nullable="false" />
+    <Property Type="Int32" Name="oldfk_vdfamily1" Nullable="true" />
+    <Property Type="String" Name="Error" Nullable="true" MaxLength="70" />
+    <Property Type="String" Name="RecipeUser" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="InsertDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="EndDate" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="fk_vdfamily" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="selectRestorative_Result">
+    <Property Type="Int32" Name="pk_dent_Screen1" Nullable="false" />
+    <Property Type="String" Name="SpecificationDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Tcomment" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="dent_neededServicedesc" Nullable="true" MaxLength="50" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="selectRestorativeTx_Comment_Result">
+    <Property Type="Int32" Name="pk_dent_Screen2" Nullable="false" />
+    <Property Type="String" Name="FirstScreenDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="RestorativeTxComment" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+  </ComplexType>
+  <ComplexType Name="ServicesHistory_Result">
+    <Property Type="Int32" Name="Servicescode" Nullable="true" />
+    <Property Type="String" Name="servicesname" Nullable="true" MaxLength="200" />
+    <Property Type="Binary" Name="ToothImage" Nullable="true" MaxLength="Max" />
+    <Property Type="String" Name="Doctorsname" Nullable="true" MaxLength="112" />
+    <Property Type="String" Name="VisitDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="servicestype" Nullable="false" MaxLength="11" />
+    <Property Type="Int32" Name="code" Nullable="false" />
+    <Property Type="Int64" Name="code1" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="turnNo_screenView_Result">
+    <Property Type="Int64" Name="Turnid" Nullable="false" />
+    <Property Type="String" Name="Turndate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="turntime" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="kindtext" Nullable="true" MaxLength="6" />
+    <Property Type="String" Name="doctorsname" Nullable="true" MaxLength="112" />
+  </ComplexType>
+  <ComplexType Name="vacationinplanvisit_Result">
+    <Property Type="Int32" Name="vacationsCode" Nullable="false" />
+    <Property Type="Int32" Name="Doctorscode" Nullable="true" />
+    <Property Type="String" Name="vacationType" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="fromDate" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="fromDate_Eng" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Todate" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="Todate_Eng" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="usercode" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="web_screen_select_Result">
+    <Property Type="Int32" Name="persno" Nullable="true" />
+    <Property Type="Int32" Name="RelationOrderNo" Nullable="true" />
+    <Property Type="String" Name="FName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="IdEmployeeType" Nullable="true" />
+    <Property Type="String" Name="NesbatDesc" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="telephon" Nullable="true" MaxLength="40" />
+    <Property Type="Int32" Name="Pk_vdfamily" Nullable="false" />
+    <Property Type="Guid" Name="IdPersno" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="XML_5_Result">
+    <Property Type="Int32" Name="PersonalNo" Nullable="true" />
+    <Property Type="Int32" Name="Relation" Nullable="true" />
+    <Property Type="Int32" Name="ValidCenter" Nullable="true" />
+    <Property Type="String" Name="VisitDate" Nullable="true" MaxLength="9" />
+    <Property Type="Byte" Name="Shift" Nullable="true" />
+    <Property Type="Int32" Name="MedicalService" Nullable="true" />
+    <Property Type="Double" Name="PayMent" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="Refer">
+    <Key>
+      <PropertyRef Name="Refer_code" />
+    </Key>
+    <Property Name="Refer_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fkvdfamily" Type="Int32" />
+    <Property Name="PersNo" Type="Int32" />
+    <Property Name="Refredate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="RefreTime" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ReferUser" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Refer_status">
+    <Key>
+      <PropertyRef Name="Refer_status1" />
+    </Key>
+    <Property Name="Refer_status1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Refer_code" Type="Int32" />
+    <Property Name="Refer_status_code" Type="Byte" />
+  </EntityType>
+  <EntityType Name="Refer_status_desc">
+    <Key>
+      <PropertyRef Name="Refer_status_code" />
+    </Key>
+    <Property Name="Refer_status_code" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Screen_count">
+    <Key>
+      <PropertyRef Name="Screen_count_code" />
+    </Key>
+    <Property Name="Screen_count_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="doctorscode" Type="Int32" />
+    <Property Name="shiftcode" Type="Int32" />
+    <Property Name="Screen_count1" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TblCompany">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="TblManagement_Id" />
+      <PropertyRef Name="IdentityId" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="TblManagement_Id" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IdentityId" Type="Int32" Nullable="false" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TblManagement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TblMaritalStatu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int16" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TblRelation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int16" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Nesbatxml" Type="Int16" />
+  </EntityType>
+  <EntityType Name="TblSubCompany">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="TblCompany_Id" Type="Int32" />
+    <Property Name="TblManagement_Id" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TblValidCenter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="IdValidCenterType" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="TblValidCenterZone_Id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TblValidCenterCity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="TblValidCenterZone_Id" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Deleted" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TblValidCenterZone">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="JobLocation">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="TblManagement_Id" />
+      <PropertyRef Name="IdentityId" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="TblManagement_Id" Type="Int32" Nullable="false" />
+    <Property Name="companyname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IdentityId" Type="Int32" Nullable="false" />
+    <Property Name="Managementname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tbl_ValidCenterZone">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="name">
+    <Key>
+      <PropertyRef Name="number" />
+    </Key>
+    <Property Name="number" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="vertion" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Radio_Services_request_Detail">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Radio_Services_request_code" Type="Int32" />
+    <Property Name="Radio_services_Code" Type="Byte" />
+    <Property Name="ServicesCode" Type="Int32" />
+    <Property Name="ToothId" Type="Byte" />
+    <Property Name="Area" Type="Byte" />
+    <Property Name="Status" Type="Byte" />
+    <Property Name="deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TblEmployeetype">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="EmployeeTypeDesc" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeTypeDesc" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Treaty_Id" Type="Int32" />
+    <Property Name="Display" Type="Boolean" />
+    <Property Name="Number" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Tartib" Type="Int32" />
+    <Property Name="empdesc" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="NiocPerson">
+    <Key>
+      <PropertyRef Name="IdPerson" />
+      <PropertyRef Name="IDPersonold" />
+      <PropertyRef Name="PersNo" />
+      <PropertyRef Name="Fk_Nesbat" />
+      <PropertyRef Name="Lname" />
+      <PropertyRef Name="Fname" />
+      <PropertyRef Name="Fk_validCenterZone" />
+      <PropertyRef Name="Fk_validCenter" />
+      <PropertyRef Name="Deleted" />
+      <PropertyRef Name="IdEmployeeType" />
+      <PropertyRef Name="BirthDate" />
+      <PropertyRef Name="Pk_vdfamily" />
+      <PropertyRef Name="EntryDate" />
+      <PropertyRef Name="ExpDate" />
+      <PropertyRef Name="oldPk_vdfamily" />
+      <PropertyRef Name="CancelDate" />
+      <PropertyRef Name="IdMaritalStatus" />
+      <PropertyRef Name="Fk_EmployeeStatus" />
+      <PropertyRef Name="Sex" />
+    </Key>
+    <Property Name="IdPerson" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="IDPersonold" Type="Guid" Nullable="false" />
+    <Property Name="PersNo" Type="Int32" Nullable="false" />
+    <Property Name="RelationOrderNo" Type="Int16" />
+    <Property Name="Fk_Nesbat" Type="Int16" Nullable="false" />
+    <Property Name="Lname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Int32" />
+    <Property Name="Fk_validCenterZone" Type="Int32" Nullable="false" />
+    <Property Name="Fk_validCenter" Type="Int32" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+    <Property Name="IdEmployeeType" Type="Int32" Nullable="false" />
+    <Property Name="BirthDate" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="Fk_Management" Type="Int32" />
+    <Property Name="Fk_Company" Type="Int32" />
+    <Property Name="Fk_subCompany" Type="Int32" />
+    <Property Name="Mobile" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+    <Property Name="Pk_vdfamily" Type="Int32" Nullable="false" />
+    <Property Name="NationalCode" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="IDJobRelated" Type="Int16" />
+    <Property Name="EntryDate" Type="Int32" Nullable="false" />
+    <Property Name="ExpDate" Type="Int32" Nullable="false" />
+    <Property Name="IDEduDegree" Type="Int16" />
+    <Property Name="oldPk_vdfamily" Type="Int32" Nullable="false" />
+    <Property Name="CancelDate" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="IdMaritalStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="HomePhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="WorkPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="AddressHome" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AddressWork" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Fk_EmployeeStatus" Type="Int32" Nullable="false" />
+    <Property Name="Sex" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeInfoTbl">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="IdPerson" Type="Guid" />
+    <Property Name="TblCompany_Id" Type="Int32" />
+    <Property Name="TblManagement_Id" Type="Int32" />
+    <Property Name="TblSubCompany_Id" Type="Int32" />
+    <Property Name="Telephone" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="HomePhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="WorkPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="WifePhone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="PostalCode" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="TblRelationFamily_Id" Type="Int16" />
+    <Property Name="ComboTable_Id_WorkType" Type="Int32" />
+    <Property Name="TblEmployeetype_Id" Type="Int32" Nullable="false" />
+    <Property Name="PersNo" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="WorkAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="LastUpdateDate" Type="Int32" />
+    <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PersonTbl">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Fname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeInfoTbl_Id" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+    <Property Name="NationalCode" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="TblRelation_Id" Type="Int16" Nullable="false" />
+    <Property Name="RelationOrderNo" Type="Int16" />
+    <Property Name="Sex" Type="Boolean" Nullable="false" />
+    <Property Name="ActualDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="BirthDate" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="FatherFname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TblValidCenter_Id" Type="Int32" Nullable="false" />
+    <Property Name="TblValidCenterCity_Id" Type="Int32" Nullable="false" />
+    <Property Name="TblEduDegree_Id" Type="Int16" />
+    <Property Name="Mobile" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+    <Property Name="TblMaritalStatus_Id" Type="Int16" />
+    <Property Name="Pk_vdfamily" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ComboTable_Id_sex" Type="Int32" />
+    <Property Name="MiladyBirthDate" Type="DateTime" Precision="0" />
+    <Property Name="LastUpdateDate" Type="Int32" />
+    <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IDJobRelated" Type="Int16" />
+    <Property Name="PostCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PersNo" Type="Int32" />
+    <Property Name="ExpDate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="ExpBookDate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Radio_Services_request">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="persno" Type="Int32" />
+    <Property Name="Fkvdfamily" Type="Int32" />
+    <Property Name="Currentdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="currentTime" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="DoctorsCode" Type="Int32" />
+    <Property Name="validcenterzone" Type="Int32" />
+    <Property Name="Status1" Type="Byte" />
+    <Property Name="Status2" Type="Byte" />
+    <Property Name="Usercode" Type="Int32" />
+    <Property Name="ipadress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="IllnessHistory">
+    <Key>
+      <PropertyRef Name="IllnessHistorycode" />
+    </Key>
+    <Property Name="IllnessHistorycode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IllnessHistorydesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="familydentist_view">
+    <Key>
+      <PropertyRef Name="UserCode" />
+    </Key>
+    <Property Name="drname" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="UserCode" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Services_Group_report">
+    <Key>
+      <PropertyRef Name="Services_Group_code_report" />
+    </Key>
+    <Property Name="Services_Group_code_report" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Services_Group_Desc_report" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tariff">
+    <Key>
+      <PropertyRef Name="Tariffcode" />
+    </Key>
+    <Property Name="Tariffcode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tariffkind" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="TariffBegindate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="TariffBegindate_Eng" Type="DateTime" Precision="3" />
+    <Property Name="Tariffenddate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Tariffenddate_Eng" Type="DateTime" Precision="3" />
+    <Property Name="Zarib" Type="Int32" />
+    <Property Name="Kindpaient" Type="Int32" />
+    <Property Name="Kindjobpaient_managment" Type="Int32" />
+    <Property Name="Kindjobpaient_company" Type="Int32" />
+    <Property Name="year" Type="Int32" />
+    <Property Name="Tariffkind_int" Type="Int32" />
+    <Property Name="Feranshiz" Type="Int32" />
+    <Property Name="deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="full_niocperson">
+    <Key>
+      <PropertyRef Name="PersNo" />
+      <PropertyRef Name="fullname" />
+      <PropertyRef Name="BirthDate" />
+      <PropertyRef Name="IdEmployeeType" />
+      <PropertyRef Name="IdPerson" />
+      <PropertyRef Name="Pk_vdfamily" />
+      <PropertyRef Name="Fk_Nesbat" />
+      <PropertyRef Name="Fk_validCenter" />
+      <PropertyRef Name="Sex" />
+    </Key>
+    <Property Name="PersNo" Type="Int32" Nullable="false" />
+    <Property Name="fullname" Type="String" Nullable="false" MaxLength="102" FixedLength="false" Unicode="true" />
+    <Property Name="fullname2" Type="String" MaxLength="135" FixedLength="false" Unicode="true" />
+    <Property Name="nesbatdesc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="companyname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Managementname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="ValidCenterZoneDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="validcenterdesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IdEmployeeType" Type="Int32" Nullable="false" />
+    <Property Name="Fk_Management" Type="Int32" />
+    <Property Name="IdPerson" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="RelationOrderNo" Type="Int16" />
+    <Property Name="Pk_vdfamily" Type="Int32" Nullable="false" />
+    <Property Name="Fk_Nesbat" Type="Int16" Nullable="false" />
+    <Property Name="Id" Type="Int32" />
+    <Property Name="TblValidCenterZone_Id" Type="Int32" />
+    <Property Name="Mobile" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+    <Property Name="Fk_validCenter" Type="Int32" Nullable="false" />
+    <Property Name="IDJobRelated" Type="Int16" />
+    <Property Name="Sex" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dent_Tooth">
+    <Key>
+      <PropertyRef Name="ToothID" />
+    </Key>
+    <Property Name="ToothID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ToothName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ToothImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ToothID2" Type="Byte" Nullable="false" />
+    <Property Name="FDI_ID" Type="Byte" />
+    <Property Name="ORDERBY" Type="Byte" />
+  </EntityType>
+  <EntityType Name="dent_screen2">
+    <Key>
+      <PropertyRef Name="pk_dent_Screen2" />
+    </Key>
+    <Property Name="pk_dent_Screen2" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_doctor" Type="Int32" />
+    <Property Name="FirstScreenDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="fk_vst" Type="Int32" />
+    <Property Name="fk_vdfamily" Type="Int32" />
+    <Property Name="DentalSurgeryComment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="RestorativeTxComment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="RCTComment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="PaComment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="OtherRadioGraphyComment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="OCCLComment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="EmergenyTxComment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="OrupPathoComment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="OtherFindingComment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="cheifcomplain" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="CurettageComment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="PerioSxComment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ClComment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="TPCom" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="RctCom" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NGCom" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="OtherCom" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ExtractionComment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="fk_vdfamily1" Type="Int32" />
+    <Property Name="IllnessHistory" Type="Byte" />
+    <Property Name="Pregnant" Type="Byte" />
+    <Property Name="BMTStatus" Type="Byte" />
+    <Property Name="Outmouth" Type="Byte" />
+    <Property Name="TMJ" Type="Byte" />
+    <Property Name="mucousmouth" Type="Byte" />
+    <Property Name="PeriodentalStatus" Type="Byte" />
+    <Property Name="Prosthodonti" Type="Byte" />
+    <Property Name="Occlusion" Type="Byte" />
+    <Property Name="needlerning" Type="Byte" />
+    <Property Name="needborosazh" Type="Byte" />
+    <Property Name="needfeloride" Type="Byte" />
+    <Property Name="needjerm" Type="Byte" />
+    <Property Name="needfishorsilant" Type="Byte" />
+    <Property Name="dentalneed" Type="Byte" />
+    <Property Name="gharbalgari" Type="Byte" />
+    <Property Name="Doctors_Consult" Type="Byte" />
+    <Property Name="Doctors_Consult_text" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Dentist_Consult" Type="Byte" />
+    <Property Name="Dentist_Consult_text" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="deleted" Type="Boolean" />
+    <Property Name="fk_vdfamily2" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Event_report">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

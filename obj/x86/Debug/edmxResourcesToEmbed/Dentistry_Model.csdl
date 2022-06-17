@@ -1,0 +1,1069 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dentistryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AcessLevel">
+    <Key>
+      <PropertyRef Name="code" />
+    </Key>
+    <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserCode" Type="Int32" />
+    <Property Name="UserName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="AcessLevel1" Type="Byte" />
+    <NavigationProperty Name="TblUser" Relationship="Self.FK_AcessLevel_AcessLevel" FromRole="AcessLevel" ToRole="TblUsers" />
+  </EntityType>
+  <EntityType Name="Clinic">
+    <Key>
+      <PropertyRef Name="ClinicCode" />
+    </Key>
+    <Property Name="ClinicCode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClinicName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Depatrment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoomNO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ClinicType" Type="Byte" />
+    <Property Name="Comment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ClinicType1" Relationship="Self.FK_Clinics_ClinicType" FromRole="Clinics" ToRole="ClinicType" />
+    <NavigationProperty Name="PlanVisits" Relationship="Self.FK_PlanVisit_Clinics" FromRole="Clinics" ToRole="PlanVisit" />
+  </EntityType>
+  <EntityType Name="ClinicType">
+    <Key>
+      <PropertyRef Name="ClinicTypecode" />
+    </Key>
+    <Property Name="ClinicTypecode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClinictypeName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Clinics" Relationship="Self.FK_Clinics_ClinicType" FromRole="ClinicType" ToRole="Clinics" />
+  </EntityType>
+  <EntityType Name="consult">
+    <Key>
+      <PropertyRef Name="consultCode" />
+    </Key>
+    <Property Name="consultCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Idperson" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Persno" Type="Int32" />
+    <Property Name="Fkvdfamily" Type="Int32" />
+    <Property Name="Icd10code" Type="Int32" />
+    <Property Name="Servicescode" Type="Int32" />
+    <Property Name="ToothID" Type="Byte" />
+    <Property Name="introductionDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="introductionTime" Type="Time" Precision="7" />
+    <Property Name="ConsultDoctors" Type="Int32" />
+    <Property Name="Doctorscode" Type="Int32" />
+    <Property Name="usercode" Type="Int32" />
+  </EntityType>
+  <EntityType Name="costconfirm">
+    <Key>
+      <PropertyRef Name="costconfirmCode" />
+    </Key>
+    <Property Name="costconfirmCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VisitDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Servicescode" Type="Int32" />
+    <Property Name="Doctorsoutname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ToothID" Type="Byte" />
+    <Property Name="Confirmdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Confirmtime" Type="Time" Precision="7" />
+    <Property Name="Doctorscode" Type="Int32" />
+    <Property Name="usercode" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Dent_Tooth">
+    <Key>
+      <PropertyRef Name="ToothID" />
+    </Key>
+    <Property Name="ToothID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ToothName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ToothImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Recipes" Relationship="Self.FK_Recipe_Dent_Tooth" FromRole="Dent_Tooth" ToRole="Recipe" />
+  </EntityType>
+  <EntityType Name="DoctorOfService">
+    <Key>
+      <PropertyRef Name="code" />
+    </Key>
+    <Property Name="code" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Services_detail_code" Type="Int32" />
+    <Property Name="UserCode" Type="Int32" />
+    <Property Name="ServicesTime" Type="Int32" />
+    <NavigationProperty Name="Services_detail" Relationship="Self.FK_DoctorsService_Services_detail" FromRole="DoctorOfService" ToRole="Services_detail" />
+    <NavigationProperty Name="TblUser" Relationship="Self.FK_DoctorsService_TblUsers" FromRole="DoctorOfService" ToRole="TblUsers" />
+  </EntityType>
+  <EntityType Name="doctorsService">
+    <Key>
+      <PropertyRef Name="doctorsServiceCode" />
+    </Key>
+    <Property Name="doctorsServiceCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Idperson" Type="Guid" />
+    <Property Name="Persno" Type="Int32" />
+    <Property Name="Fkvdfamily" Type="Int32" />
+    <Property Name="Servicescode" Type="Int32" />
+    <Property Name="ToothID" Type="Byte" />
+    <Property Name="description" Type="Int32" />
+    <Property Name="Planvst" Type="Int32" />
+    <Property Name="Recipeturn" Type="Int32" />
+    <Property Name="recipeID" Type="Int32" />
+    <Property Name="Status" Type="Byte" />
+    <Property Name="Usercode" Type="Int32" />
+    <Property Name="Insertdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Inserttime" Type="Time" Precision="7" />
+  </EntityType>
+  <EntityType Name="DoctorsWorkTime">
+    <Key>
+      <PropertyRef Name="DoctorsWorkTimeCode" />
+    </Key>
+    <Property Name="DoctorsWorkTimeCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Doctorscode" Type="Int32" />
+    <Property Name="Workdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Workdate_eng" Type="DateTime" Precision="3" />
+    <Property Name="Workshift" Type="Byte" />
+    <Property Name="timeFrom" Type="Time" Precision="7" />
+    <Property Name="timeTo" Type="Time" Precision="7" />
+    <Property Name="Kind" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Usercode" Type="Int32" />
+    <NavigationProperty Name="Shift" Relationship="Self.FK_DoctorsWorkTime_Shifts" FromRole="DoctorsWorkTime" ToRole="Shifts" />
+    <NavigationProperty Name="TblUser" Relationship="Self.FK_DoctorsWorkTime_TblUsers" FromRole="DoctorsWorkTime" ToRole="TblUsers" />
+  </EntityType>
+  <EntityType Name="EmployeeInfo">
+    <Key>
+      <PropertyRef Name="EmployeeInfo1" />
+    </Key>
+    <Property Name="EmployeeInfo1" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDPerson" Type="Int32" Nullable="false" />
+    <Property Name="IDValidCenterZone2" Type="Byte" Nullable="false" />
+    <Property Name="IDValidCenter2" Type="Int16" Nullable="false" />
+    <Property Name="ShiftStatus" Type="Byte" Nullable="false" />
+    <Property Name="IDEmployeeType" Type="Byte" Nullable="false" />
+    <Property Name="IDGrade" Type="Byte" Nullable="false" />
+    <Property Name="IDWorkType" Type="Byte" Nullable="false" />
+    <Property Name="Job" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Unit" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Persno" Type="Int32" />
+  </EntityType>
+  <EntityType Name="EmployeeInfoTbl">
+    <Key>
+      <PropertyRef Name="EmployeeInfoTbl1" />
+    </Key>
+    <Property Name="EmployeeInfoTbl1" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDPerson" Type="Guid" />
+    <Property Name="Fk_Company" Type="Int32" />
+    <Property Name="Fk_Management" Type="Int32" />
+    <Property Name="Fk_subCompany" Type="Int32" />
+    <Property Name="IdEmployeeType" Type="Int32" />
+    <Property Name="Fk_EmployeeStatus" Type="Int32" />
+    <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Persno" Type="Int32" />
+  </EntityType>
+  <EntityType Name="EventsDescription">
+    <Key>
+      <PropertyRef Name="LogCode" />
+    </Key>
+    <Property Name="LogCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EventsLogs" Relationship="Self.FK_EventsLog_EventsDescription" FromRole="EventsDescription" ToRole="EventsLog" />
+  </EntityType>
+  <EntityType Name="EventsLog">
+    <Key>
+      <PropertyRef Name="EventsLogCode" />
+    </Key>
+    <Property Name="EventsLogCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="usercode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="logdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="logtime" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="LogCode" Type="Int32" />
+    <Property Name="Ipadress" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EventsDescription" Relationship="Self.FK_EventsLog_EventsDescription" FromRole="EventsLog" ToRole="EventsDescription" />
+  </EntityType>
+  <EntityType Name="introduction">
+    <Key>
+      <PropertyRef Name="introductionCode" />
+    </Key>
+    <Property Name="introductionCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Idperson" Type="Guid" />
+    <Property Name="Persno" Type="Int32" />
+    <Property Name="Fkvdfamily" Type="Int32" />
+    <Property Name="Outcentercode" Type="Int32" />
+    <Property Name="Servicescode" Type="Int32" />
+    <Property Name="ToothID" Type="Byte" />
+    <Property Name="introductionDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="introductionTime" Type="Time" Precision="7" />
+    <Property Name="Doctorscode" Type="Int32" />
+    <Property Name="usercode" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Medicalrest">
+    <Key>
+      <PropertyRef Name="MedicalrestCode" />
+    </Key>
+    <Property Name="MedicalrestCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Idperson" Type="Guid" />
+    <Property Name="Persno" Type="Int32" />
+    <Property Name="Fkvdfamily" Type="Int32" />
+    <Property Name="currentdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Currenttime" Type="Time" Precision="7" />
+    <Property Name="Firstrestdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Endrestdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Returnworkdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Icd10code" Type="Int32" />
+    <Property Name="Countofrest" Type="Byte" />
+    <Property Name="Doctorscode" Type="Int32" />
+    <Property Name="usercode" Type="Int32" />
+    <Property Name="comment" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="outcenter">
+    <Key>
+      <PropertyRef Name="outcenterCode" />
+    </Key>
+    <Property Name="outcenterCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="outcenterName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="outcenterKind" Type="String" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="OutCenterdepartment" Type="Byte" />
+    <Property Name="beginDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Enddate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="usercode" Type="Int32" />
+    <NavigationProperty Name="OutCenterdepartment1" Relationship="dentistryModel.FK_outcenter_OutCenterdepartment" FromRole="outcenter" ToRole="OutCenterdepartment" />
+    <NavigationProperty Name="outcenterKind1" Relationship="dentistryModel.FK_outcenter_outcenterKind" FromRole="outcenter" ToRole="outcenterKind" />
+  </EntityType>
+  <EntityType Name="OutCenterdepartment">
+    <Key>
+      <PropertyRef Name="OutCenterDepartmentCode" />
+    </Key>
+    <Property Name="OutCenterDepartmentCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="departmentDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="outcenters" Relationship="dentistryModel.FK_outcenter_OutCenterdepartment" FromRole="OutCenterdepartment" ToRole="outcenter" />
+  </EntityType>
+  <EntityType Name="PaientStatu">
+    <Key>
+      <PropertyRef Name="PaientStatuscode" />
+    </Key>
+    <Property Name="PaientStatuscode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaientStatusName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Recipes" Relationship="Self.FK_Recipe_PaientStatus" FromRole="PaientStatus" ToRole="Recipe" />
+  </EntityType>
+  <EntityType Name="PaientType">
+    <Key>
+      <PropertyRef Name="PaientTypeCode" />
+    </Key>
+    <Property Name="PaientTypeCode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaientTypeName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Recipes" Relationship="Self.FK_Recipe_PaientType" FromRole="PaientType" ToRole="Recipe" />
+  </EntityType>
+  <EntityType Name="PlanVisit">
+    <Key>
+      <PropertyRef Name="planvisit_Code" />
+    </Key>
+    <Property Name="planvisit_Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Doctorscode" Type="Int32" />
+    <Property Name="Cliniccode" Type="Byte" />
+    <Property Name="Capacity" Type="Byte" />
+    <Property Name="Fromdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="todate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Shiftcode" Type="Byte" />
+    <Property Name="Fromtime" Type="Time" Precision="7" />
+    <Property Name="totime" Type="Time" Precision="7" />
+    <Property Name="intervaltime" Type="Byte" />
+    <Property Name="usercode" Type="Int32" />
+    <Property Name="insertdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="inserttime" Type="Time" Precision="7" />
+    <Property Name="status" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Clinic" Relationship="Self.FK_PlanVisit_Clinics" FromRole="PlanVisit" ToRole="Clinics" />
+    <NavigationProperty Name="TblUser" Relationship="Self.FK_PlanVisit_TblUsers" FromRole="PlanVisit" ToRole="TblUsers" />
+    <NavigationProperty Name="Recipes" Relationship="Self.FK_Recipe_PlanVisit" FromRole="PlanVisit" ToRole="Recipe" />
+  </EntityType>
+  <EntityType Name="Recipe">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDPerson" Type="Guid" />
+    <Property Name="Personelcode" Type="Int32" />
+    <Property Name="Fkvdfamily" Type="Int32" />
+    <Property Name="Currentdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="currentTime" Type="Time" Precision="7" />
+    <Property Name="Turndate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Turntime" Type="Time" Precision="7" />
+    <Property Name="turnNo" Type="Byte" />
+    <Property Name="DoctorsCode" Type="Int32" />
+    <Property Name="Planvisit_code" Type="Int32" />
+    <Property Name="Servicescode" Type="Byte" />
+    <Property Name="TurnStatus" Type="Byte" />
+    <Property Name="Shiftcode" Type="Byte" />
+    <Property Name="ToothID" Type="Byte" />
+    <Property Name="PaientType" Type="Byte" />
+    <Property Name="PaientStatus" Type="Byte" />
+    <Property Name="Usercode" Type="Byte" />
+    <Property Name="recipekind" Type="Byte" />
+    <NavigationProperty Name="Dent_Tooth" Relationship="Self.FK_Recipe_Dent_Tooth" FromRole="Recipe" ToRole="Dent_Tooth" />
+    <NavigationProperty Name="PaientStatu" Relationship="Self.FK_Recipe_PaientStatus" FromRole="Recipe" ToRole="PaientStatus" />
+    <NavigationProperty Name="PaientType1" Relationship="Self.FK_Recipe_PaientType" FromRole="Recipe" ToRole="PaientType" />
+    <NavigationProperty Name="PlanVisit" Relationship="Self.FK_Recipe_PlanVisit" FromRole="Recipe" ToRole="PlanVisit" />
+    <NavigationProperty Name="Shift" Relationship="Self.FK_Recipe_Shifts" FromRole="Recipe" ToRole="Shifts" />
+    <NavigationProperty Name="TblUser" Relationship="Self.FK_Recipe_TblUsers" FromRole="Recipe" ToRole="TblUsers" />
+    <NavigationProperty Name="TurnStatu" Relationship="Self.FK_Recipe_TurnStatus" FromRole="Recipe" ToRole="TurnStatus" />
+  </EntityType>
+  <EntityType Name="Services_detail">
+    <Key>
+      <PropertyRef Name="Services_detail_Code" />
+    </Key>
+    <Property Name="Services_detail_Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Services_Head_code" Type="Int32" />
+    <Property Name="Services_detail_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ServicesTime" Type="Byte" />
+    <Property Name="K_NO" Type="Double" />
+    <Property Name="Kkanoon_K_NO" Type="Double" />
+    <Property Name="f16_K_NO" Type="Double" />
+    <Property Name="ServiceTypeF16Code" Type="Int32" />
+    <Property Name="ServiceTypeKanoonCode" Type="Int32" />
+    <Property Name="TypeScreen_code" Type="Int32" />
+    <Property Name="Tarefe_code" Type="Int32" />
+    <Property Name="Kanal_NO" Type="Byte" />
+    <Property Name="Pinaj_NO" Type="Byte" />
+    <Property Name="Pinkanal_NO" Type="Byte" />
+    <Property Name="Pinamalgam_NO" Type="Byte" />
+    <Property Name="Pinkampozit_NO" Type="Byte" />
+    <Property Name="ISValid" Type="Boolean" />
+    <NavigationProperty Name="DoctorOfServices" Relationship="Self.FK_DoctorsService_Services_detail" FromRole="Services_detail" ToRole="DoctorOfService" />
+    <NavigationProperty Name="Services_Head" Relationship="Self.FK_Services_detail_Services_Head" FromRole="Services_detail" ToRole="Services_Head" />
+  </EntityType>
+  <EntityType Name="Services_Head">
+    <Key>
+      <PropertyRef Name="Services_Head_code" />
+    </Key>
+    <Property Name="Services_Head_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Services_Head_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Services_detail" Relationship="Self.FK_Services_detail_Services_Head" FromRole="Services_Head" ToRole="Services_detail" />
+  </EntityType>
+  <EntityType Name="ServiceTypeF16">
+    <Key>
+      <PropertyRef Name="ServiceTypeF16Code" />
+    </Key>
+    <Property Name="ServiceTypeF16Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceTypeF16Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="F16Code" Type="Int32" />
+    <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ServiceTypeIntroduction">
+    <Key>
+      <PropertyRef Name="ServiceTypeIntroductionCode" />
+    </Key>
+    <Property Name="ServiceTypeIntroductionCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServicesCode" Type="Int32" />
+    <Property Name="Comment" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ServiceTypeKanoon">
+    <Key>
+      <PropertyRef Name="ServiceTypeKanoonCode" />
+    </Key>
+    <Property Name="ServiceTypeKanoonCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceTypeKanoonName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Xmlcode" Type="Int32" />
+    <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ServiceTypeScreen">
+    <Key>
+      <PropertyRef Name="ServiceTypeScreenCode" />
+    </Key>
+    <Property Name="ServiceTypeScreenCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceTypeScreenName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Shift">
+    <Key>
+      <PropertyRef Name="Shiftcode" />
+    </Key>
+    <Property Name="Shiftcode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Shiftname" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Fromtime" Type="Time" Precision="7" />
+    <Property Name="totime" Type="Time" Precision="7" />
+    <Property Name="XmlShiftCode" Type="Int32" />
+    <NavigationProperty Name="DoctorsWorkTimes" Relationship="Self.FK_DoctorsWorkTime_Shifts" FromRole="Shifts" ToRole="DoctorsWorkTime" />
+    <NavigationProperty Name="Recipes" Relationship="Self.FK_Recipe_Shifts" FromRole="Shifts" ToRole="Recipe" />
+  </EntityType>
+  <EntityType Name="Speciality">
+    <Key>
+      <PropertyRef Name="specialityCode" />
+    </Key>
+    <Property Name="specialityCode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Speciality1" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="specialityXMLCode" Type="Int32" />
+    <NavigationProperty Name="TblUsers" Relationship="Self.FK_TblUsers_Speciality" FromRole="Speciality" ToRole="TblUsers" />
+  </EntityType>
+  <EntityType Name="specialityKind">
+    <Key>
+      <PropertyRef Name="specialityKindCode" />
+    </Key>
+    <Property Name="specialityKindCode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="specialityKind1" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="specialityKindXMLCode" Type="Int32" />
+    <NavigationProperty Name="TblUsers" Relationship="Self.FK_TblUsers_specialityKind" FromRole="specialityKind" ToRole="TblUsers" />
+  </EntityType>
+  <EntityType Name="Takekind_Recipe">
+    <Key>
+      <PropertyRef Name="Takekind_RecipeCode" />
+    </Key>
+    <Property Name="Takekind_RecipeCode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Takekind_RecipeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tariff">
+    <Key>
+      <PropertyRef Name="Tariffcode" />
+    </Key>
+    <Property Name="Tariffcode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tariffkind" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="TariffBegindate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Tariffenddate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Zarib" Type="Double" />
+    <Property Name="Kindpaient" Type="Int32" />
+    <Property Name="Kindjobpaient" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Tbl_Employeetype">
+    <Key>
+      <PropertyRef Name="Pk_EmployeeType" />
+    </Key>
+    <Property Name="Pk_EmployeeType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeTypeDesc" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Fk_Treaty" Type="Int32" />
+    <Property Name="Display" Type="Boolean" />
+    <Property Name="Number" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="empdesc" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tbl_Management">
+    <Key>
+      <PropertyRef Name="Pk_Management" />
+    </Key>
+    <Property Name="Pk_Management" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ManagementDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tbl_MaritalStatus">
+    <Key>
+      <PropertyRef Name="IDMaritalStatus" />
+    </Key>
+    <Property Name="IDMaritalStatus" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tbl_PersonType">
+    <Key>
+      <PropertyRef Name="IDPersonType" />
+    </Key>
+    <Property Name="IDPersonType" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tbl_SubCompany">
+    <Key>
+      <PropertyRef Name="Pk_SubCompany" />
+    </Key>
+    <Property Name="Pk_SubCompany" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fk_Management" Type="Byte" Nullable="false" />
+    <Property Name="Fk_Company" Type="Int16" Nullable="false" />
+    <Property Name="SubCompanyName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tbl_ValidCenter">
+    <Key>
+      <PropertyRef Name="pk_ValidCenter" />
+    </Key>
+    <Property Name="pk_ValidCenter" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fk_ValidCenter" Type="Byte" Nullable="false" />
+    <Property Name="IdValidCenterType" Type="Int32" />
+    <Property Name="ValidCenterDesc" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Tbl_ValidCenterCity">
+    <Key>
+      <PropertyRef Name="Pk_ValidCenterZone" />
+    </Key>
+    <Property Name="Pk_ValidCenterZone" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_ValidCenterZone" Type="Int32" />
+    <Property Name="ValidCenterZoneDesc" Type="String" MaxLength="700" FixedLength="false" Unicode="true" />
+    <Property Name="deleted" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tbl_ValidCenterZone">
+    <Key>
+      <PropertyRef Name="Pk_ValidCenterZone" />
+    </Key>
+    <Property Name="Pk_ValidCenterZone" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ValidCenterZoneDesc" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TblUser">
+    <Key>
+      <PropertyRef Name="UserCode" />
+    </Key>
+    <Property Name="UserCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="personalNO" Type="Int32" />
+    <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SN" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="GroupCode" Type="Byte" />
+    <Property Name="DoctorNO" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="specialityKindCode" Type="Byte" />
+    <Property Name="specialityCode" Type="Byte" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="EnglishName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="title" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="PersianTitle" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AcessLevels" Relationship="Self.FK_AcessLevel_AcessLevel" FromRole="TblUsers" ToRole="AcessLevel" />
+    <NavigationProperty Name="DoctorOfServices" Relationship="Self.FK_DoctorsService_TblUsers" FromRole="TblUsers" ToRole="DoctorOfService" />
+    <NavigationProperty Name="DoctorsWorkTimes" Relationship="Self.FK_DoctorsWorkTime_TblUsers" FromRole="TblUsers" ToRole="DoctorsWorkTime" />
+    <NavigationProperty Name="PlanVisits" Relationship="Self.FK_PlanVisit_TblUsers" FromRole="TblUsers" ToRole="PlanVisit" />
+    <NavigationProperty Name="Recipes" Relationship="Self.FK_Recipe_TblUsers" FromRole="TblUsers" ToRole="Recipe" />
+    <NavigationProperty Name="Speciality" Relationship="Self.FK_TblUsers_Speciality" FromRole="TblUsers" ToRole="Speciality" />
+    <NavigationProperty Name="specialityKind" Relationship="Self.FK_TblUsers_specialityKind" FromRole="TblUsers" ToRole="specialityKind" />
+    <NavigationProperty Name="userKind" Relationship="Self.FK_TblUsers_userKind" FromRole="TblUsers" ToRole="userKind" />
+    <NavigationProperty Name="vacations" Relationship="Self.FK_vacations_TblUsers" FromRole="TblUsers" ToRole="vacations" />
+  </EntityType>
+  <EntityType Name="TurnStatu">
+    <Key>
+      <PropertyRef Name="TurnStatuscode" />
+    </Key>
+    <Property Name="TurnStatuscode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TurnStatusName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Recipes" Relationship="Self.FK_Recipe_TurnStatus" FromRole="TurnStatus" ToRole="Recipe" />
+  </EntityType>
+  <EntityType Name="userKind">
+    <Key>
+      <PropertyRef Name="GroupCode" />
+    </Key>
+    <Property Name="GroupCode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TblUsers" Relationship="Self.FK_TblUsers_userKind" FromRole="userKind" ToRole="TblUsers" />
+  </EntityType>
+  <EntityType Name="vacation">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserCode" Type="Int32" />
+    <Property Name="vacationType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fromDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Todate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Fromtime" Type="Time" Precision="7" />
+    <Property Name="totime" Type="Time" Precision="7" />
+    <NavigationProperty Name="TblUser" Relationship="Self.FK_vacations_TblUsers" FromRole="vacations" ToRole="TblUsers" />
+  </EntityType>
+  <EntityType Name="PersonInfo">
+    <Key>
+      <PropertyRef Name="Pk_personinfo" />
+    </Key>
+    <Property Name="Pk_personinfo" Type="Int32" Nullable="false" />
+    <Property Name="persno" Type="Int32" />
+    <Property Name="telephon" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="WorkPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="HomePhone" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="AddressHome1" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="AddressHome2" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="AddressWork" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="fk_RelationFamily" Type="Byte" />
+    <Property Name="Fk_Job" Type="Int32" />
+    <Property Name="WifePhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="mobile" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="IdEmployeeType" Type="Int32" />
+    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <Property Name="IsSuspended" Type="Boolean" />
+    <Property Name="Guid" Type="Guid" />
+  </EntityType>
+  <EntityType Name="PersonTbl">
+    <Key>
+      <PropertyRef Name="Pk_vdfamily" />
+    </Key>
+    <Property Name="PersNo" Type="Int32" />
+    <Property Name="RelationOrderNo" Type="Int32" />
+    <Property Name="Fk_Nesbat" Type="Byte" />
+    <Property Name="NationalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Int32" />
+    <Property Name="BirthDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Fk_validCenterZone" Type="Int32" />
+    <Property Name="Fk_validCenter" Type="Int32" />
+    <Property Name="IdPersno" Type="Guid" />
+    <Property Name="Deleted" Type="Boolean" />
+    <Property Name="IDEduDegree" Type="Byte" />
+    <Property Name="Pk_vdfamily" Type="Int32" Nullable="false" />
+    <Property Name="IdEmployeeType" Type="Int32" />
+  </EntityType>
+  <EntityType Name="RecipeError">
+    <Key>
+      <PropertyRef Name="pk_RecipeError" />
+    </Key>
+    <Property Name="pk_RecipeError" Type="Int32" Nullable="false" />
+    <Property Name="fk_vdfamily" Type="Int32" />
+    <Property Name="Error" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="RecipeUser" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="InsertDate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="EndDate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="fk_vdfamily_new" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Tbl_Company">
+    <Key>
+      <PropertyRef Name="Pk_Company" />
+      <PropertyRef Name="Fk_Management" />
+    </Key>
+    <Property Name="Pk_Company" Type="Int16" Nullable="false" />
+    <Property Name="Fk_Management" Type="Byte" Nullable="false" />
+    <Property Name="ManagementDesc" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tbl_Relation">
+    <Key>
+      <PropertyRef Name="Pk_nesbat" />
+    </Key>
+    <Property Name="Pk_nesbat" Type="Byte" Nullable="false" />
+    <Property Name="NesbatDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Nesbatxml" Type="Byte" />
+  </EntityType>
+  <Association Name="FK_AcessLevel_AcessLevel">
+    <End Role="TblUsers" Type="Self.TblUser" Multiplicity="0..1" />
+    <End Role="AcessLevel" Type="Self.AcessLevel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUsers">
+        <PropertyRef Name="UserCode" />
+      </Principal>
+      <Dependent Role="AcessLevel">
+        <PropertyRef Name="UserCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Clinics_ClinicType">
+    <End Role="ClinicType" Type="Self.ClinicType" Multiplicity="0..1" />
+    <End Role="Clinics" Type="Self.Clinic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClinicType">
+        <PropertyRef Name="ClinicTypecode" />
+      </Principal>
+      <Dependent Role="Clinics">
+        <PropertyRef Name="ClinicType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlanVisit_Clinics">
+    <End Role="Clinics" Type="Self.Clinic" Multiplicity="0..1" />
+    <End Role="PlanVisit" Type="Self.PlanVisit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clinics">
+        <PropertyRef Name="ClinicCode" />
+      </Principal>
+      <Dependent Role="PlanVisit">
+        <PropertyRef Name="Cliniccode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recipe_Dent_Tooth">
+    <End Role="Dent_Tooth" Type="Self.Dent_Tooth" Multiplicity="0..1" />
+    <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dent_Tooth">
+        <PropertyRef Name="ToothID" />
+      </Principal>
+      <Dependent Role="Recipe">
+        <PropertyRef Name="ToothID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DoctorsService_Services_detail">
+    <End Role="Services_detail" Type="Self.Services_detail" Multiplicity="0..1" />
+    <End Role="DoctorOfService" Type="Self.DoctorOfService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Services_detail">
+        <PropertyRef Name="Services_detail_Code" />
+      </Principal>
+      <Dependent Role="DoctorOfService">
+        <PropertyRef Name="Services_detail_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DoctorsService_TblUsers">
+    <End Role="TblUsers" Type="Self.TblUser" Multiplicity="0..1" />
+    <End Role="DoctorOfService" Type="Self.DoctorOfService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUsers">
+        <PropertyRef Name="UserCode" />
+      </Principal>
+      <Dependent Role="DoctorOfService">
+        <PropertyRef Name="UserCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DoctorsWorkTime_Shifts">
+    <End Role="Shifts" Type="Self.Shift" Multiplicity="0..1" />
+    <End Role="DoctorsWorkTime" Type="Self.DoctorsWorkTime" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shifts">
+        <PropertyRef Name="Shiftcode" />
+      </Principal>
+      <Dependent Role="DoctorsWorkTime">
+        <PropertyRef Name="Workshift" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DoctorsWorkTime_TblUsers">
+    <End Role="TblUsers" Type="Self.TblUser" Multiplicity="0..1" />
+    <End Role="DoctorsWorkTime" Type="Self.DoctorsWorkTime" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUsers">
+        <PropertyRef Name="UserCode" />
+      </Principal>
+      <Dependent Role="DoctorsWorkTime">
+        <PropertyRef Name="Doctorscode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventsLog_EventsDescription">
+    <End Role="EventsDescription" Type="Self.EventsDescription" Multiplicity="0..1" />
+    <End Role="EventsLog" Type="Self.EventsLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventsDescription">
+        <PropertyRef Name="LogCode" />
+      </Principal>
+      <Dependent Role="EventsLog">
+        <PropertyRef Name="LogCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recipe_PaientStatus">
+    <End Role="PaientStatus" Type="Self.PaientStatu" Multiplicity="0..1" />
+    <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaientStatus">
+        <PropertyRef Name="PaientStatuscode" />
+      </Principal>
+      <Dependent Role="Recipe">
+        <PropertyRef Name="PaientStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recipe_PaientType">
+    <End Role="PaientType" Type="Self.PaientType" Multiplicity="0..1" />
+    <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaientType">
+        <PropertyRef Name="PaientTypeCode" />
+      </Principal>
+      <Dependent Role="Recipe">
+        <PropertyRef Name="PaientType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlanVisit_TblUsers">
+    <End Role="TblUsers" Type="Self.TblUser" Multiplicity="0..1" />
+    <End Role="PlanVisit" Type="Self.PlanVisit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUsers">
+        <PropertyRef Name="UserCode" />
+      </Principal>
+      <Dependent Role="PlanVisit">
+        <PropertyRef Name="Doctorscode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recipe_PlanVisit">
+    <End Role="PlanVisit" Type="Self.PlanVisit" Multiplicity="0..1" />
+    <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlanVisit">
+        <PropertyRef Name="planvisit_Code" />
+      </Principal>
+      <Dependent Role="Recipe">
+        <PropertyRef Name="Planvisit_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recipe_Shifts">
+    <End Role="Shifts" Type="Self.Shift" Multiplicity="0..1" />
+    <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shifts">
+        <PropertyRef Name="Shiftcode" />
+      </Principal>
+      <Dependent Role="Recipe">
+        <PropertyRef Name="Shiftcode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recipe_TblUsers">
+    <End Role="TblUsers" Type="Self.TblUser" Multiplicity="0..1" />
+    <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUsers">
+        <PropertyRef Name="UserCode" />
+      </Principal>
+      <Dependent Role="Recipe">
+        <PropertyRef Name="DoctorsCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recipe_TurnStatus">
+    <End Role="TurnStatus" Type="Self.TurnStatu" Multiplicity="0..1" />
+    <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TurnStatus">
+        <PropertyRef Name="TurnStatuscode" />
+      </Principal>
+      <Dependent Role="Recipe">
+        <PropertyRef Name="TurnStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Services_detail_Services_Head">
+    <End Role="Services_Head" Type="Self.Services_Head" Multiplicity="0..1" />
+    <End Role="Services_detail" Type="Self.Services_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Services_Head">
+        <PropertyRef Name="Services_Head_code" />
+      </Principal>
+      <Dependent Role="Services_detail">
+        <PropertyRef Name="Services_Head_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblUsers_Speciality">
+    <End Role="Speciality" Type="Self.Speciality" Multiplicity="0..1" />
+    <End Role="TblUsers" Type="Self.TblUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Speciality">
+        <PropertyRef Name="specialityCode" />
+      </Principal>
+      <Dependent Role="TblUsers">
+        <PropertyRef Name="specialityCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblUsers_specialityKind">
+    <End Role="specialityKind" Type="Self.specialityKind" Multiplicity="0..1" />
+    <End Role="TblUsers" Type="Self.TblUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="specialityKind">
+        <PropertyRef Name="specialityKindCode" />
+      </Principal>
+      <Dependent Role="TblUsers">
+        <PropertyRef Name="specialityKindCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblUsers_userKind">
+    <End Role="userKind" Type="Self.userKind" Multiplicity="0..1" />
+    <End Role="TblUsers" Type="Self.TblUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userKind">
+        <PropertyRef Name="GroupCode" />
+      </Principal>
+      <Dependent Role="TblUsers">
+        <PropertyRef Name="GroupCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_vacations_TblUsers">
+    <End Role="TblUsers" Type="Self.TblUser" Multiplicity="0..1" />
+    <End Role="vacations" Type="Self.vacation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUsers">
+        <PropertyRef Name="UserCode" />
+      </Principal>
+      <Dependent Role="vacations">
+        <PropertyRef Name="UserCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dentistryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AcessLevels" EntityType="Self.AcessLevel" />
+    <EntitySet Name="Clinics" EntityType="Self.Clinic" />
+    <EntitySet Name="ClinicTypes" EntityType="Self.ClinicType" />
+    <EntitySet Name="consults" EntityType="Self.consult" />
+    <EntitySet Name="costconfirms" EntityType="Self.costconfirm" />
+    <EntitySet Name="Dent_Tooth" EntityType="Self.Dent_Tooth" />
+    <EntitySet Name="DoctorOfServices" EntityType="Self.DoctorOfService" />
+    <EntitySet Name="doctorsServices" EntityType="Self.doctorsService" />
+    <EntitySet Name="DoctorsWorkTimes" EntityType="Self.DoctorsWorkTime" />
+    <EntitySet Name="EmployeeInfoes" EntityType="Self.EmployeeInfo" />
+    <EntitySet Name="EmployeeInfoTbls" EntityType="Self.EmployeeInfoTbl" />
+    <EntitySet Name="EventsDescriptions" EntityType="Self.EventsDescription" />
+    <EntitySet Name="EventsLogs" EntityType="Self.EventsLog" />
+    <EntitySet Name="introductions" EntityType="Self.introduction" />
+    <EntitySet Name="Medicalrests" EntityType="Self.Medicalrest" />
+    <EntitySet Name="outcenters" EntityType="Self.outcenter" />
+    <EntitySet Name="OutCenterdepartments" EntityType="Self.OutCenterdepartment" />
+    <EntitySet Name="PaientStatus" EntityType="Self.PaientStatu" />
+    <EntitySet Name="PaientTypes" EntityType="Self.PaientType" />
+    <EntitySet Name="PlanVisits" EntityType="Self.PlanVisit" />
+    <EntitySet Name="Recipes" EntityType="Self.Recipe" />
+    <EntitySet Name="Services_detail" EntityType="Self.Services_detail" />
+    <EntitySet Name="Services_Head" EntityType="Self.Services_Head" />
+    <EntitySet Name="ServiceTypeF16" EntityType="Self.ServiceTypeF16" />
+    <EntitySet Name="ServiceTypeIntroductions" EntityType="Self.ServiceTypeIntroduction" />
+    <EntitySet Name="ServiceTypeKanoons" EntityType="Self.ServiceTypeKanoon" />
+    <EntitySet Name="ServiceTypeScreens" EntityType="Self.ServiceTypeScreen" />
+    <EntitySet Name="Shifts" EntityType="Self.Shift" />
+    <EntitySet Name="Specialities" EntityType="Self.Speciality" />
+    <EntitySet Name="specialityKinds" EntityType="Self.specialityKind" />
+    <EntitySet Name="Takekind_Recipe" EntityType="Self.Takekind_Recipe" />
+    <EntitySet Name="tariffs" EntityType="Self.tariff" />
+    <EntitySet Name="Tbl_Employeetype" EntityType="Self.Tbl_Employeetype" />
+    <EntitySet Name="Tbl_Management" EntityType="Self.Tbl_Management" />
+    <EntitySet Name="Tbl_MaritalStatus" EntityType="Self.Tbl_MaritalStatus" />
+    <EntitySet Name="Tbl_PersonType" EntityType="Self.Tbl_PersonType" />
+    <EntitySet Name="Tbl_SubCompany" EntityType="Self.Tbl_SubCompany" />
+    <EntitySet Name="Tbl_ValidCenter" EntityType="Self.Tbl_ValidCenter" />
+    <EntitySet Name="Tbl_ValidCenterCity" EntityType="Self.Tbl_ValidCenterCity" />
+    <EntitySet Name="Tbl_ValidCenterZone" EntityType="Self.Tbl_ValidCenterZone" />
+    <EntitySet Name="TblUsers" EntityType="Self.TblUser" />
+    <EntitySet Name="TurnStatus" EntityType="Self.TurnStatu" />
+    <EntitySet Name="userKinds" EntityType="Self.userKind" />
+    <EntitySet Name="vacations" EntityType="Self.vacation" />
+    <EntitySet Name="PersonInfoes" EntityType="Self.PersonInfo" />
+    <EntitySet Name="PersonTbls" EntityType="Self.PersonTbl" />
+    <EntitySet Name="RecipeErrors" EntityType="Self.RecipeError" />
+    <EntitySet Name="Tbl_Company" EntityType="Self.Tbl_Company" />
+    <EntitySet Name="Tbl_Relation" EntityType="Self.Tbl_Relation" />
+    <AssociationSet Name="FK_AcessLevel_AcessLevel" Association="Self.FK_AcessLevel_AcessLevel">
+      <End Role="TblUsers" EntitySet="TblUsers" />
+      <End Role="AcessLevel" EntitySet="AcessLevels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Clinics_ClinicType" Association="Self.FK_Clinics_ClinicType">
+      <End Role="ClinicType" EntitySet="ClinicTypes" />
+      <End Role="Clinics" EntitySet="Clinics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanVisit_Clinics" Association="Self.FK_PlanVisit_Clinics">
+      <End Role="Clinics" EntitySet="Clinics" />
+      <End Role="PlanVisit" EntitySet="PlanVisits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recipe_Dent_Tooth" Association="Self.FK_Recipe_Dent_Tooth">
+      <End Role="Dent_Tooth" EntitySet="Dent_Tooth" />
+      <End Role="Recipe" EntitySet="Recipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DoctorsService_Services_detail" Association="Self.FK_DoctorsService_Services_detail">
+      <End Role="Services_detail" EntitySet="Services_detail" />
+      <End Role="DoctorOfService" EntitySet="DoctorOfServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DoctorsService_TblUsers" Association="Self.FK_DoctorsService_TblUsers">
+      <End Role="TblUsers" EntitySet="TblUsers" />
+      <End Role="DoctorOfService" EntitySet="DoctorOfServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DoctorsWorkTime_Shifts" Association="Self.FK_DoctorsWorkTime_Shifts">
+      <End Role="Shifts" EntitySet="Shifts" />
+      <End Role="DoctorsWorkTime" EntitySet="DoctorsWorkTimes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DoctorsWorkTime_TblUsers" Association="Self.FK_DoctorsWorkTime_TblUsers">
+      <End Role="TblUsers" EntitySet="TblUsers" />
+      <End Role="DoctorsWorkTime" EntitySet="DoctorsWorkTimes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventsLog_EventsDescription" Association="Self.FK_EventsLog_EventsDescription">
+      <End Role="EventsDescription" EntitySet="EventsDescriptions" />
+      <End Role="EventsLog" EntitySet="EventsLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recipe_PaientStatus" Association="Self.FK_Recipe_PaientStatus">
+      <End Role="PaientStatus" EntitySet="PaientStatus" />
+      <End Role="Recipe" EntitySet="Recipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recipe_PaientType" Association="Self.FK_Recipe_PaientType">
+      <End Role="PaientType" EntitySet="PaientTypes" />
+      <End Role="Recipe" EntitySet="Recipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanVisit_TblUsers" Association="Self.FK_PlanVisit_TblUsers">
+      <End Role="TblUsers" EntitySet="TblUsers" />
+      <End Role="PlanVisit" EntitySet="PlanVisits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recipe_PlanVisit" Association="Self.FK_Recipe_PlanVisit">
+      <End Role="PlanVisit" EntitySet="PlanVisits" />
+      <End Role="Recipe" EntitySet="Recipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recipe_Shifts" Association="Self.FK_Recipe_Shifts">
+      <End Role="Shifts" EntitySet="Shifts" />
+      <End Role="Recipe" EntitySet="Recipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recipe_TblUsers" Association="Self.FK_Recipe_TblUsers">
+      <End Role="TblUsers" EntitySet="TblUsers" />
+      <End Role="Recipe" EntitySet="Recipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recipe_TurnStatus" Association="Self.FK_Recipe_TurnStatus">
+      <End Role="TurnStatus" EntitySet="TurnStatus" />
+      <End Role="Recipe" EntitySet="Recipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Services_detail_Services_Head" Association="Self.FK_Services_detail_Services_Head">
+      <End Role="Services_Head" EntitySet="Services_Head" />
+      <End Role="Services_detail" EntitySet="Services_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblUsers_Speciality" Association="Self.FK_TblUsers_Speciality">
+      <End Role="Speciality" EntitySet="Specialities" />
+      <End Role="TblUsers" EntitySet="TblUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblUsers_specialityKind" Association="Self.FK_TblUsers_specialityKind">
+      <End Role="specialityKind" EntitySet="specialityKinds" />
+      <End Role="TblUsers" EntitySet="TblUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblUsers_userKind" Association="Self.FK_TblUsers_userKind">
+      <End Role="userKind" EntitySet="userKinds" />
+      <End Role="TblUsers" EntitySet="TblUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_vacations_TblUsers" Association="Self.FK_vacations_TblUsers">
+      <End Role="TblUsers" EntitySet="TblUsers" />
+      <End Role="vacations" EntitySet="vacations" />
+    </AssociationSet>
+    <FunctionImport Name="GeneralDelete">
+      <Parameter Name="Tables" Mode="In" Type="String" />
+      <Parameter Name="Conditions" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GeneralInsert">
+      <Parameter Name="Tables" Mode="In" Type="String" />
+      <Parameter Name="Conditions" Mode="In" Type="String" />
+      <Parameter Name="Fields" Mode="In" Type="String" />
+      <Parameter Name="Values" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GeneralJoinSelect">
+      <Parameter Name="Tables" Mode="In" Type="String" />
+      <Parameter Name="Conditions" Mode="In" Type="String" />
+      <Parameter Name="Fields" Mode="In" Type="String" />
+      <Parameter Name="JoinTables" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GeneralSelect">
+      <Parameter Name="Tables" Mode="In" Type="String" />
+      <Parameter Name="Conditions" Mode="In" Type="String" />
+      <Parameter Name="Conditions_2" Mode="In" Type="String" />
+      <Parameter Name="Fields" Mode="In" Type="String" />
+      <Parameter Name="AliasFields" Mode="In" Type="String" />
+      <Parameter Name="MainFields" Mode="In" Type="String" />
+      <Parameter Name="JoinTables" Mode="In" Type="String" />
+      <Parameter Name="Code" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GeneralUpdate">
+      <Parameter Name="Tables" Mode="In" Type="String" />
+      <Parameter Name="Values" Mode="In" Type="String" />
+      <Parameter Name="Conditions" Mode="In" Type="String" />
+    </FunctionImport>
+    <AssociationSet Name="FK_outcenter_OutCenterdepartment" Association="dentistryModel.FK_outcenter_OutCenterdepartment">
+      <End Role="OutCenterdepartment" EntitySet="OutCenterdepartments" />
+      <End Role="outcenter" EntitySet="outcenters" />
+    </AssociationSet>
+    <EntitySet Name="outcenterKinds" EntityType="dentistryModel.outcenterKind" />
+    <AssociationSet Name="FK_outcenter_outcenterKind" Association="dentistryModel.FK_outcenter_outcenterKind">
+      <End Role="outcenterKind" EntitySet="outcenterKinds" />
+      <End Role="outcenter" EntitySet="outcenters" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_outcenter_OutCenterdepartment">
+    <End Type="dentistryModel.OutCenterdepartment" Role="OutCenterdepartment" Multiplicity="0..1" />
+    <End Type="dentistryModel.outcenter" Role="outcenter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OutCenterdepartment">
+        <PropertyRef Name="OutCenterDepartmentCode" />
+      </Principal>
+      <Dependent Role="outcenter">
+        <PropertyRef Name="OutCenterdepartment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="outcenterKind">
+    <Key>
+      <PropertyRef Name="outcenterKindCode" />
+    </Key>
+    <Property Name="outcenterKindCode" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kindDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="outcenters" Relationship="dentistryModel.FK_outcenter_outcenterKind" FromRole="outcenterKind" ToRole="outcenter" />
+  </EntityType>
+  <Association Name="FK_outcenter_outcenterKind">
+    <End Type="dentistryModel.outcenterKind" Role="outcenterKind" Multiplicity="0..1" />
+    <End Type="dentistryModel.outcenter" Role="outcenter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="outcenterKind">
+        <PropertyRef Name="outcenterKindCode" />
+      </Principal>
+      <Dependent Role="outcenter">
+        <PropertyRef Name="outcenterKind" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
